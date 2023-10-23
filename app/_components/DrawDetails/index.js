@@ -53,7 +53,7 @@ export default function DrawDetails() {
               return (
                 <tr className={styles[`row__${id}`]} key={id}>
                   <td>{item.token}</td>
-                  <td>{Math.floor(item.deposit)}</td>
+                  <td>{item.deposit}</td>
                   <td>{item.daily}</td>
                   <td className={styles.last__column}>{item.super}</td>
                 </tr>
