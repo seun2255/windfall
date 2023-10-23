@@ -12,7 +12,7 @@ export default function Deposits() {
   const { chain, color } = useSelector((state) => state.app);
   const { user } = useSelector((state) => state.user);
 
-  if (chain != "other" && user.address) {
+  if (chain != "other" && user.address && user.deposits.length !== 0) {
     return (
       <div className={styles.main}>
         <h2>
