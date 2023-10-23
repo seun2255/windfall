@@ -4,7 +4,7 @@ import ball3 from "./ball3.png";
 import ball4 from "./ball4.png";
 import ball5 from "./ball5.png";
 import ball6 from "./ball6.png";
-import twirl from "./twirl.png";
+import twirl from "./Twirl.png";
 
 //Module for using all images
 const images = {

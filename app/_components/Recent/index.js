@@ -3,7 +3,6 @@
 import Image from "next/image";
 import styles from "./index.module.css";
 import { useDispatch } from "react-redux";
-import images from "@/app/_assets/img/img";
 import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
