@@ -1,95 +1,52 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import Image from "next/image";
+import styles from "./page.module.css";
+import Header from "./_components/Header";
+import DrawDetails from "./_components/DrawDetails";
+import Deposits from "./_components/Deposits";
+import RecentWindfalls from "./_components/Recent";
+import ConnectWalletModal from "./_modals/walletConnectModal";
+import DepositModal from "./_modals/depositModal";
+import Footer from "./_components/Footer";
+import { useSelector, useDispatch } from "react-redux";
+import { getDrawDetails, getRecentWindfalls } from "./_utils/contract";
+import { setDrawDetails, setRecentWindfalls } from "./_redux/app";
+import { useEffect, useState } from "react";
+import NetworkModal from "./_modals/wrongNetwork";
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+  const { walletModal, depositModal, networkModal } = useSelector(
+    (state) => state.modals
+  );
+  const [hydrate, setHydrate] = useState(false);
+  const dispatch = useDispatch();
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+  useEffect(() => {
+    const getData = async () => {
+      const details = await getDrawDetails();
+      const recentWindfalls = await getRecentWindfalls();
+      console.log(details);
+      dispatch(setDrawDetails(details));
+      dispatch(setRecentWindfalls(recentWindfalls));
+      setHydrate(true);
+    };
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+    getData();
+  });
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+  if (hydrate) {
+    return (
+      <main className={styles.main}>
+        <Header />
+        <DrawDetails />
+        <Deposits />
+        <RecentWindfalls />
+        <Footer />
+        {walletModal && <ConnectWalletModal />}
+        {depositModal && <DepositModal />}
+        {networkModal && <NetworkModal />}
+      </main>
+    );
+  }
 }

@@ -1,0 +1,154 @@
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 108px 8%;
+  display: flex;
+  column-gap: 180px;
+}
+
+.logo__box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.logo {
+  font-family: "Lato";
+  font-size: 37px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.logo > span {
+  position: relative;
+  font-family: "Lato";
+}
+
+.flower {
+  position: absolute;
+  left: -1%;
+  top: -15px;
+  width: 14px;
+  height: 14px;
+}
+
+.logo__box > span {
+  color: rgba(255, 255, 255, 0.4);
+  font-family: "Lato";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.08px;
+  margin-bottom: 30px;
+}
+
+.socials {
+  display: flex;
+  column-gap: 13px;
+}
+
+.social__icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.links {
+  display: flex;
+  column-gap: 140px;
+  margin-top: 20px;
+}
+
+.link__box {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.link__box > h4 {
+  color: #fff;
+  font-family: "Lato";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: -0.08px;
+  text-decoration-line: underline;
+}
+
+.link__box p {
+  color: #fff;
+  font-family: "Lato";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.08px;
+}
+
+@media screen and (max-width: 920px) {
+  .container {
+    padding: 52px 7.15%;
+    display: flex;
+    flex-direction: column;
+    column-gap: 0px;
+    row-gap: 59px;
+  }
+
+  .logo__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+  }
+
+  .logo {
+    font-size: 30.5px;
+    font-weight: 600;
+    margin-bottom: 19px;
+  }
+
+  .logo > span {
+    position: relative;
+    font-family: "Lato";
+  }
+
+  .flower {
+    position: absolute;
+    left: -1%;
+    top: -15px;
+    width: 16.7px;
+    height: 16.7px;
+  }
+
+  .logo__box > span {
+    font-size: 13.3px;
+    margin-bottom: 34px;
+  }
+
+  .socials {
+    display: flex;
+    column-gap: 13px;
+  }
+
+  .social__icon {
+    width: 24px;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    row-gap: 47px;
+  }
+
+  .link__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 21px;
+  }
+}

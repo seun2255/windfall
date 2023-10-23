@@ -1,0 +1,398 @@
+.main {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 100px 0px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background__twirl {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 250px;
+}
+
+.box {
+  position: relative;
+  width: 70%;
+  box-sizing: border-box;
+  padding: 40px;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  box-shadow: -100px 88px 159px 0 rgba(17, 138, 178, 0.25);
+  z-index: 1;
+  background: linear-gradient(to bottom, #113844, #000101);
+}
+
+.top {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 44px;
+}
+
+.top > span {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-size: 32px;
+  font-weight: 500;
+  font-family: "Satoshi";
+  color: #ffffff;
+}
+
+.timer__icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.timer {
+  box-sizing: border-box;
+  display: flex;
+  width: 220px;
+  justify-content: center;
+  padding: 10px 0px;
+  border-radius: 15px;
+  background-color: #ffffff1a;
+  color: white;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 42px;
+  font-family: "Satoshi";
+}
+
+.display {
+  width: 95%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-family: "Satoshi";
+  font-weight: 300 !important;
+}
+
+.table__head {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.288);
+  text-align: left;
+  color: white;
+}
+
+.table__head > tr th {
+  padding-bottom: 30px;
+  padding-right: 30px;
+}
+
+.table__body {
+  padding-top: 30px;
+  font-weight: 500;
+}
+
+.table__body > tr td {
+  padding-bottom: 30px;
+  padding-right: 30px;
+}
+
+.row__0 td {
+  padding-top: 30px;
+  color: #01e186;
+}
+
+.row__1 td {
+  color: #3e8fff;
+}
+
+.row__2 td {
+  color: #a46dff;
+}
+
+.last__column {
+  border-left: 1px solid rgba(255, 255, 255, 0.288);
+  padding-left: 30px;
+}
+
+.button {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-size: 22px;
+  padding: 10px 0px;
+  color: white;
+  background: linear-gradient(to bottom, #3a89a3, #0a303d);
+  border-radius: 13px;
+  border: 1.33px solid hsla(191, 73%, 53%, 0.7);
+  cursor: pointer;
+}
+
+.button:active {
+  background: none;
+  background-color: white;
+  color: rgba(30, 86, 104, 1);
+}
+
+/* Colored Background balls */
+.ball1 {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  top: 30%;
+  left: -150px;
+}
+
+.ball2 {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 56%;
+  left: -180px;
+}
+
+.ball3 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 85%;
+  left: -150px;
+}
+
+.ball4 {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 30%;
+  right: -130px;
+}
+
+.ball5 {
+  position: absolute;
+  width: 94px;
+  height: 94px;
+  top: 55%;
+  right: -260px;
+}
+
+.ball6 {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  top: 88%;
+  right: -165px;
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1439px) {
+  .box {
+    width: 650px;
+  }
+
+  .top > span {
+    font-size: 26px;
+  }
+
+  .timer__icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .timer {
+    padding: 5px 70px;
+    font-size: 26px;
+  }
+
+  .display {
+    font-size: 20px;
+  }
+
+  /* Colored Background balls */
+  .ball1 {
+    position: absolute;
+    width: 68px;
+    height: 68px;
+    top: 30%;
+    left: -150px;
+  }
+
+  .ball2 {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 56%;
+    left: -180px;
+  }
+
+  .ball3 {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    top: 85%;
+    left: -150px;
+  }
+
+  .ball4 {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 30%;
+    right: -130px;
+  }
+
+  .ball5 {
+    position: absolute;
+    width: 86px;
+    height: 86px;
+    top: 55%;
+    right: -260px;
+  }
+
+  .ball6 {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 88%;
+    right: -165px;
+  }
+}
+
+/* Mobile Style */
+@media screen and (max-width: 920px) {
+  .main {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px;
+  }
+
+  .background__twirl {
+    width: 100%;
+    height: 135px;
+  }
+
+  .box {
+    width: 80%;
+    display: inline-flex;
+    padding: 34px 6.295px 77.5px 9px;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    width: 247px;
+    align-items: center;
+    gap: 7.077px;
+    margin-bottom: 0px;
+  }
+
+  .top > span {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .timer__icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .timer {
+    width: 225px;
+    padding: 5px 0px;
+    border-radius: 10.8px;
+    font-size: 20px;
+  }
+
+  .display {
+    width: 98%;
+    border-collapse: collapse;
+    font-family: "Satoshi";
+    font-weight: 300 !important;
+    margin-bottom: 0px;
+  }
+
+  .table__head {
+    border-bottom: none;
+    text-align: left;
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 12px;
+  }
+
+  .table__head > tr th {
+    padding: 10px;
+    border: none !important;
+  }
+
+  .table__body {
+    padding-top: 30px;
+    font-weight: 500;
+    font-size: 11.4px;
+  }
+
+  .table__body > tr {
+    gap: 26px;
+  }
+
+  .table__body > tr td {
+    padding: 15px;
+  }
+
+  .row__0 td {
+    padding-top: 36px;
+    color: #01e186;
+  }
+
+  .row__1 td {
+    color: #3e8fff;
+  }
+
+  .row__2 td {
+    color: #a46dff;
+  }
+
+  .last__column {
+    border-left: 1px solid rgba(255, 255, 255, 0.288);
+    text-align: center;
+  }
+
+  .button {
+    font-size: 11px;
+    padding: 8px 0px;
+    border-radius: 13.31px;
+  }
+
+  .button:active {
+    background: none;
+    background-color: white;
+    color: rgba(30, 86, 104, 1);
+  }
+
+  /* Colored Background balls */
+  .ball1 {
+    display: none;
+  }
+
+  .ball2 {
+    display: none;
+  }
+
+  .ball3 {
+    display: none;
+  }
+
+  .ball4 {
+    display: none;
+  }
+
+  .ball5 {
+    display: none;
+  }
+
+  .ball6 {
+    display: none;
+  }
+}

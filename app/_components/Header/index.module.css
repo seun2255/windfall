@@ -1,0 +1,105 @@
+.main {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 53px 7%;
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "Lato";
+  font-size: 37px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #ffffff;
+}
+
+.logo > span {
+  position: relative;
+  font-family: "Lato";
+}
+
+.flower {
+  position: absolute;
+  left: -1.5%;
+  top: -15px;
+  width: 14px;
+  height: 14px;
+}
+
+.wallet__connect__button {
+  background-color: transparent;
+  border: 1px solid #fafafa;
+  border-radius: 10px;
+  height: fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 11px 36px;
+  color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.wrong__netowrk {
+  background-color: rgba(149, 39, 39, 1);
+  border: 1px solid rgba(255, 62, 62, 0.3);
+  border-radius: 10px;
+  height: fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 11px 36px;
+  color: white;
+  cursor: pointer;
+}
+
+.outer__circle {
+  position: absolute;
+  left: -55px;
+  top: 4px;
+  margin: auto 0px;
+  box-sizing: border-box;
+  padding: 2px;
+  border-radius: 30px;
+}
+
+.icon {
+  position: relative;
+  width: 29px;
+  height: 29px;
+}
+
+@media screen and (max-width: 920px) {
+  .main {
+    padding: 42px 29px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .flower {
+    width: 12.6px;
+    height: 12.6px;
+  }
+
+  .wallet__connect__button {
+    display: flex;
+    padding: 11.199px 26.123px 11.116px 26.877px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .wrong__netowrk {
+    background-color: rgba(149, 39, 39, 1);
+    border: 1px solid rgba(255, 62, 62, 0.3);
+    display: flex;
+    padding: 11.199px 26.123px 11.116px 26.877px;
+    justify-content: center;
+    align-items: center;
+  }
+}

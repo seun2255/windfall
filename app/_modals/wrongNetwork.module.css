@@ -1,0 +1,197 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.main {
+  width: 45%;
+  box-sizing: border-box;
+  padding: 40px 34px;
+  box-shadow: 0 40px 125px 0 rgba(0, 147, 196, 0.7),
+    0 -40px 125px 0 rgba(218, 77, 116, 0.7),
+    -40px 0 125px 0 rgba(224, 189, 98, 0.7),
+    40px 0 125px 0 rgba(6, 165, 124, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(to bottom, rgba(17, 56, 68, 1), rgba(0, 1, 1, 1));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.title {
+  margin: 0%;
+  font-family: "Lato";
+  color: #ffffff;
+  font-size: 28px !important;
+  line-height: normal;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.details {
+  color: #fff;
+  font-family: "Lato";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.12px;
+  margin-bottom: 35px;
+}
+
+.gradient__border {
+  background: linear-gradient(
+    to bottom,
+    rgba(192, 58, 89, 0.5),
+    rgba(216, 181, 92, 0.5),
+    rgba(6, 177, 133, 0.5),
+    rgba(17, 132, 170, 0.5)
+  );
+  box-sizing: border-box;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.change__button {
+  border-radius: 13.31px;
+  border: 1.331px solid #c03a59;
+  background: linear-gradient(to bottom, rgb(7, 23, 28), rgb(12, 40, 48));
+  color: #ff3e3e;
+  font-family: "Lato";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.085px;
+  z-index: 2 !important;
+  cursor: pointer;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.change__button > span {
+  padding: 14px 90px;
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+  font-size: 20px;
+  color: white;
+}
+
+.token__icon {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+
+#Canto:hover {
+  color: #01e186;
+}
+
+#Ethereum:hover {
+  color: #3e8fff;
+}
+
+#Matic:hover {
+  color: #a46dff;
+}
+
+.option {
+  padding: 14px 90px;
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1439px) {
+  .title {
+    font-size: 35px;
+    line-height: 34px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+
+  .main {
+    width: 90%;
+    box-sizing: border-box;
+    padding: 35px;
+    padding-bottom: 45px;
+    box-shadow: 0 40px 125px 0 rgba(0, 147, 196, 0.7),
+      0 -40px 125px 0 rgba(218, 77, 116, 0.7),
+      -40px 0 125px 0 rgba(224, 189, 98, 0.7),
+      40px 0 125px 0 rgba(6, 165, 124, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(
+      to bottom,
+      rgba(17, 56, 68, 1),
+      rgba(0, 1, 1, 1)
+    );
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .title {
+    margin: 0%;
+    font-family: "Lato";
+    color: #ffffff;
+    font-size: 18px !important;
+    line-height: 28px;
+    font-weight: 700;
+    margin-bottom: 27px;
+  }
+
+  .details {
+    color: #fff;
+    font-family: "Lato";
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+
+  .gradient__border {
+    background: linear-gradient(
+      to bottom,
+      rgba(192, 58, 89, 0.5),
+      rgba(216, 181, 92, 0.5),
+      rgba(6, 177, 133, 0.5),
+      rgba(17, 132, 170, 0.5)
+    );
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  .change__button {
+    font-size: 14px;
+    padding: 10px 50px;
+  }
+}

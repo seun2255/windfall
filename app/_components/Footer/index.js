@@ -1,0 +1,64 @@
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./index.module.css";
+import icons from "@/app/_assets/icons/icons";
+
+export default function Footer() {
+  return (
+    <div className={styles.container}>
+      <div className={styles.logo__box}>
+        <div className={styles.logo}>
+          W
+          <span>
+            <div className={styles.flower}>
+              <Image src={"/img/common/flower.png"} alt="logo" fill />
+            </div>
+            I
+          </span>
+          NDFALL
+        </div>
+        <span>© Windfall 2023</span>
+        <div className={styles.socials}>
+          <div className={styles.social__icon}>
+            <Image src={icons.twitter} alt="social icon" fill />
+          </div>
+          <div className={styles.social__icon}>
+            <Image src={icons.discord} alt="social icon" fill />
+          </div>
+        </div>
+      </div>
+      <div className={styles.links}>
+        <div className={styles.link__box}>
+          <h4>Policies</h4>
+          <Link href={"/"}>
+            <p>Disclaimer</p>
+          </Link>
+          <Link href={"/"}>
+            <p>Privacy Policy</p>
+          </Link>
+          <Link href={"/"}>
+            <p>Terms of Service</p>
+          </Link>
+        </div>
+        <div className={styles.link__box}>
+          <h4>Resources</h4>
+          <Link href={"/"}>
+            <p>FAQ</p>
+          </Link>
+          <Link href={"/"}>
+            <p>Docs</p>
+          </Link>
+        </div>
+        <div className={styles.link__box}>
+          <h4>Support</h4>
+          <Link href={"/"}>
+            <p>Contact us</p>
+          </Link>
+          <Link href={"/"}>
+            <p>Report a bug</p>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
