@@ -4,25 +4,27 @@ import TOKENCONTRACT from "../_contracts/Token.json";
 import { formatEther } from "ethers";
 import processMetadata from "./processMetadata";
 import formatAmount from "./formatAmount";
-/**
- * Blockchain Integration
- */
+
+// creates an instance of the provider
 const getProvider = async () => {
   const provider = new ethers.BrowserProvider(window.ethereum);
   return provider;
 };
 
+// creates an instance of the signer
 const getSigner = async () => {
   const provider = new ethers.BrowserProvider(window.ethereum);
   const signer = await provider.getSigner();
   return signer;
 };
 
+// gets the address of the connected user
 const getAddress = async () => {
   const signer = await getSigner();
   return signer.address;
 };
 
+// Object that houses the details for the apps availabble networks and their respective contracts and rpc urls
 const contracts = {
   Canto: {
     stakingContract: process.env.NEXT_PUBLIC_CANTO_CONTRACT_ADDRESS,
@@ -42,6 +44,7 @@ const contracts = {
   },
 };
 
+// creates an instance of the contract object for the staking contract of the network the user is connected to
 const getContract = async () => {
   const network = await determineNetwork();
   const signer = await getSigner();
@@ -53,6 +56,7 @@ const getContract = async () => {
   return contract;
 };
 
+// creates an instance of the contract object with a Json RPC provider. contract view functions can be called without being connected
 const getContractJson = async (network) => {
   const rpcURL = contracts[network].rpcURL;
 
@@ -68,6 +72,7 @@ const getContractJson = async (network) => {
   return contract;
 };
 
+// creates an instance of the contract object for the token contract of the network the user is connected to
 const getTokenContract = async () => {
   const network = await determineNetwork();
   const signer = await getSigner();
@@ -79,6 +84,7 @@ const getTokenContract = async () => {
   return contract;
 };
 
+// returns a string of the network the user is connected to
 const determineNetwork = async () => {
   const provider = await getProvider();
   const network = await provider.getNetwork();
@@ -98,6 +104,10 @@ const determineNetwork = async () => {
   return networkName;
 };
 
+/**
+ *
+ * @param {*} network the network the user wants to connect to
+ */
 const switchNetwork = async (network) => {
   if (window.ethereum) {
     const provider = window.ethereum;
@@ -148,6 +158,11 @@ const switchNetwork = async (network) => {
   }
 };
 
+/**
+ *
+ * @param {*} network the network whichs frontend data you want to get
+ * @returns the frontend data {isSuper, superMultiplier, dayAmount, weekAmount, totalStaked, winningAmounts, winningTokens,}
+ */
 const getFrontendData = async (network) => {
   const contract = await getContractJson(network);
   const frontData = await contract.getFrontendData();
@@ -183,6 +198,10 @@ const getFrontendData = async (network) => {
   };
 };
 
+/**
+ * @notice gets the detials for the next draw
+ * @returns an object with the draw details for each netowrk available on the app
+ */
 const getDrawDetails = async () => {
   const cantoData = await getFrontendData("Canto");
   const ethereumData = await getFrontendData("Ethereum");
@@ -212,6 +231,7 @@ const getDrawDetails = async () => {
   return details;
 };
 
+// Returns an array of the last 12 draw winners
 const getRecentWindfalls = async () => {
   const cantoData = await getFrontendData("Canto");
   const ethereumData = await getFrontendData("Ethereum");
@@ -267,6 +287,10 @@ const getRecentWindfalls = async () => {
   return recentWindfalls;
 };
 
+/**
+ * @notice Connects the users wallet to the app
+ * @returns an object with the chain the user is connected to and the nfts/deposits they have on that network
+ */
 const connect = async () => {
   var data = {};
   const address = await getAddress();
@@ -303,6 +327,7 @@ const connect = async () => {
   }
 };
 
+// Returns the users total balance on the connected network minus enough for 3 gas fees on that network
 const getBalanceMinusGas = async () => {
   const address = await getAddress();
   const provider = await getProvider();
@@ -327,6 +352,10 @@ const getBalanceMinusGas = async () => {
   return amount;
 };
 
+/**
+ * @notice calls the staking contracts deposit method
+ * @param {*} amount the amount of tokens the user whiches to deposit
+ */
 const depositTokens = async (amount) => {
   const contract = await getContract();
 
@@ -340,9 +369,9 @@ const depositTokens = async (amount) => {
 };
 
 /**
- * Main Functions
+ * @notice calls the staking contracts startUnstake method
+ * @param {*} _tokenId the id for the nft/deposit the user which to start unstaking
  */
-
 const startUnStake = async (_tokenId) => {
   const contract = await getContract();
 
@@ -352,6 +381,10 @@ const startUnStake = async (_tokenId) => {
   await tx.wait();
 };
 
+/**
+ * @notice calls the token contracts approve method before calling the staking contracts unstake method
+ * @param {*} _tokenId the id for the nft/deposit the user which to unstake
+ */
 const unstake = async (_tokenId) => {
   const tokenContract = await getTokenContract();
   const contract = await getContract();
@@ -370,6 +403,10 @@ const unstake = async (_tokenId) => {
   return true;
 };
 
+/**
+ * @notice calls the staking contracts claimRewards method
+ * @param {*} _tokenId the id for the nft/deposit the user whiches to claim rewards for
+ */
 const claimRewards = async (_tokenId) => {
   const contract = await getContract();
 

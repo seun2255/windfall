@@ -10,11 +10,13 @@ import { calculateUnstakePeriod } from "@/app/_utils/time";
 import { useDispatch } from "react-redux";
 import { updateUser } from "@/app/_redux/user";
 
+// Claim rewards button
 function ClaimRewardButton(props) {
   const { data, chain } = props;
   const [claiming, setClaiming] = useState(false);
   const dispatch = useDispatch();
 
+  // Claims the users rewards and reloads the deposit boxes with the new state from the blockchain
   const handleClaimRewards = async () => {
     setClaiming(true);
     await claimRewards(data.tokenId);
@@ -38,9 +40,11 @@ function ClaimRewardButton(props) {
   );
 }
 
+// No rewards button
 function NoRewardButton() {
   const [clicked, setClicked] = useState(false);
 
+  // sets the state of the button to clicked and sets a timeout that reverts it back to its original state after 3 seconds
   const handleClick = () => {
     setClicked(true);
     setTimeout(() => {
@@ -59,21 +63,20 @@ function NoRewardButton() {
   );
 }
 
+// Unstake buffer period button
 function UnstakeBufferPeriodButton(props) {
   const { token, setUnstakingBufferPeriod } = props;
   const [timeleft, setTimeLeft] = useState(24);
 
   useEffect(() => {
+    // calculates how much time is left for the unstake period and sets the unstake button to false when the unstake period is over
     const intervalFunction = () => {
-      // Your code to be executed every 1 minute goes here
-      console.log(token.unstakeTimestamp);
       const period = calculateUnstakePeriod(token.unstakeTimestamp);
-      console.log(period);
       if (period === 0) setUnstakingBufferPeriod(false);
       setTimeLeft(period);
     };
 
-    // Run the function initially when the component mounts
+    // Runs the function initially when the component mounts
     intervalFunction();
 
     // Sets up an interval to run the function every 1 minute (60,000 milliseconds)
@@ -88,11 +91,13 @@ function UnstakeBufferPeriodButton(props) {
   return <button className={styles.action}>{`${timeleft} Days Left`}</button>;
 }
 
+// Finish Unstaking Button
 function FinishUnstakingButton(props) {
   const { token } = props;
   const [withdrawing, setWithdrawing] = useState(false);
   const dispatch = useDispatch();
 
+  // Completes the unstake process and sets the state of the button to withdrawing
   const handleClick = async () => {
     setWithdrawing(true);
     await unstake(token.tokenId);
@@ -116,11 +121,13 @@ function FinishUnstakingButton(props) {
   );
 }
 
+// Unstake Button
 function UnstakeButton(props) {
   const [unstaking, setUnstaking] = useState(false);
   const { setUnstakingBufferPeriod, showBuffer, data } = props;
   const dispatch = useDispatch();
 
+  // Starts the unstaking buffer period
   const handleUnstake = async () => {
     if (data.unstakeTimestamp == "0") {
       setUnstaking(true);
