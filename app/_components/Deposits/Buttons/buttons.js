@@ -13,28 +13,27 @@ import { updateUser } from "@/app/_redux/user";
 function ClaimRewardButton(props) {
   const { data, chain } = props;
   const [claiming, setClaiming] = useState(false);
-  const [reward, setReward] = useState(data.reward);
+  const dispatch = useDispatch();
 
   const handleClaimRewards = async () => {
     setClaiming(true);
     await claimRewards(data.tokenId);
-    setReward(0);
+    const details = await connect();
     setClaiming(false);
+    dispatch(
+      updateUser({ address: details.address, deposits: details.tokens })
+    );
   };
 
   return (
     <button
       className={styles.claim__reward}
       onClick={handleClaimRewards}
-      style={
-        claiming
-          ? { color: "rgba(1, 133, 79, 1)", backgroundColor: "white" }
-          : null
-      }
+      style={claiming ? { color: "#01854F", background: "white" } : null}
     >
       {claiming
-        ? `Claiming ${reward} ${chain.toUpperCase()}`
-        : `Claim Reward: ${reward} ${chain.toUpperCase()}`}
+        ? `Claiming ${data.reward} ${chain.toUpperCase()}`
+        : `Claim Reward: ${data.reward} ${chain.toUpperCase()}`}
     </button>
   );
 }

@@ -202,6 +202,23 @@
   .timer {
     padding: 5px 70px;
     font-size: 26px;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+  }
+
+  .blink {
+    animation: blink 1.5s steps(2, start) infinite;
+    opacity: 1;
+    font-size: 38px;
+    padding-bottom: 7px;
+    font-family: "Lato";
+  }
+
+  @keyframes blink {
+    100% {
+      opacity: 0;
+    }
   }
 
   .display {

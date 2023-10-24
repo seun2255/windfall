@@ -30,10 +30,20 @@ export default function Footer() {
       <div className={styles.links}>
         <div className={styles.link__box}>
           <h4>Policies</h4>
-          <Link href={"/"}>
+          <Link
+            href={
+              "https://app.gitbook.com/o/kJtfy5OqPfuA6aeBb99F/s/p4yUSk23AubmL5kX5Stz/additional-information/disclaimer"
+            }
+            target="_blank"
+          >
             <p>Disclaimer</p>
           </Link>
-          <Link href={"/"}>
+          <Link
+            href={
+              "https://app.gitbook.com/o/kJtfy5OqPfuA6aeBb99F/s/p4yUSk23AubmL5kX5Stz/additional-information/privacy-policy"
+            }
+            target="_blank"
+          >
             <p>Privacy Policy</p>
           </Link>
           <Link href={"/"}>
@@ -45,13 +55,23 @@ export default function Footer() {
           <Link href={"/"}>
             <p>FAQ</p>
           </Link>
-          <Link href={"/"}>
+          <Link
+            href={
+              "https://app.gitbook.com/o/kJtfy5OqPfuA6aeBb99F/s/p4yUSk23AubmL5kX5Stz/"
+            }
+            target="_blank"
+          >
             <p>Docs</p>
           </Link>
         </div>
         <div className={styles.link__box}>
           <h4>Support</h4>
-          <Link href={"/"}>
+          <Link
+            href={
+              "https://app.gitbook.com/o/kJtfy5OqPfuA6aeBb99F/s/p4yUSk23AubmL5kX5Stz/additional-information/need-help"
+            }
+            target="_blank"
+          >
             <p>Contact us</p>
           </Link>
           <Link href={"/"}>

@@ -3,6 +3,7 @@ import CONTRACT from "../_contracts/Staking.json";
 import TOKENCONTRACT from "../_contracts/Token.json";
 import { formatEther } from "ethers";
 import processMetadata from "./processMetadata";
+import formatAmount from "./formatAmount";
 /**
  * Blockchain Integration
  */
@@ -22,25 +23,45 @@ const getAddress = async () => {
   return signer.address;
 };
 
+const contracts = {
+  Canto: {
+    stakingContract: process.env.NEXT_PUBLIC_CANTO_CONTRACT_ADDRESS,
+    tokenContract: process.env.NEXT_PUBLIC_CANTO_TOKEN_CONTRACT_ADDRESS,
+    rpcURL: "https://canto-testnet.plexnode.wtf",
+  },
+  Matic: {
+    stakingContract: process.env.NEXT_PUBLIC_MATIC_CONTRACT_ADDRESS,
+    tokenContract: process.env.NEXT_PUBLIC_MATIC_TOKEN_CONTRACT_ADDRESS,
+    rpcURL: "https://rpc-mumbai.maticvigil.com/",
+  },
+  Ethereum: {
+    stakingContract: process.env.NEXT_PUBLIC_ETHEREUM_CONTRACT_ADDRESS,
+    tokenContract: process.env.NEXT_PUBLIC_ETHEREUM_TOKEN_CONTRACT_ADDRESS,
+    rpcURL:
+      "https://eth-goerli.alchemyapi.io/v2/0-QmPnU59WPtWNtllZBsgeYW8UjPKxkg",
+  },
+};
+
 const getContract = async () => {
+  const network = await determineNetwork();
   const signer = await getSigner();
   const contract = new ethers.Contract(
-    process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+    contracts[network].stakingContract,
     CONTRACT.abi,
     signer
   );
   return contract;
 };
 
-const getContractJson = async () => {
-  const rpcURL = "https://canto-testnet.plexnode.wtf"; // canto rpc url
+const getContractJson = async (network) => {
+  const rpcURL = contracts[network].rpcURL;
 
   // Creates an ethers.js provider using the JSON-RPC URL
   const provider = new ethers.JsonRpcProvider(rpcURL);
 
   // Creates a contract instance
   const contract = new ethers.Contract(
-    process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+    contracts[network].stakingContract,
     CONTRACT.abi,
     provider
   );
@@ -48,22 +69,23 @@ const getContractJson = async () => {
 };
 
 const getTokenContract = async () => {
+  const network = await determineNetwork();
   const signer = await getSigner();
   const contract = new ethers.Contract(
-    process.env.NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS,
+    contracts[network].tokenContract,
     TOKENCONTRACT.abi,
     signer
   );
   return contract;
 };
 
-const determineNetwork = async (provider) => {
+const determineNetwork = async () => {
+  const provider = await getProvider();
   const network = await provider.getNetwork();
 
   var networkName;
-  console.log(network.name);
 
-  if (network.name === "mainnet") {
+  if (network.name === "goerli") {
     networkName = "Ethereum";
   } else if (network.name === "matic-mumbai") {
     networkName = "Matic";
@@ -93,15 +115,15 @@ const switchNetwork = async (network) => {
         blockExplorerUrls: ["https://testnet.tuber.build/"],
       },
       Ethereum: {
-        chainId: "0x1", // Chain ID for Ethereum mainnet
-        chainName: "Ethereum Mainnet",
+        chainId: "0x5", // Chain ID for Ethereum mainnet
+        chainName: "Goerli Testnet",
         nativeCurrency: {
           name: "Ethereum",
           symbol: "ETH",
           decimals: 18,
         },
         rpcUrls: ["https://mainnet.infura.io/v3/"],
-        blockExplorerUrls: ["https://etherscan.io/"], // Ethereum block explorer URL
+        blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
       },
       Matic: {
         chainId: "0x13881", // Chain ID for Matic mainnet
@@ -126,8 +148,8 @@ const switchNetwork = async (network) => {
   }
 };
 
-const getFrontendData = async () => {
-  const contract = await getContractJson();
+const getFrontendData = async (network) => {
+  const contract = await getContractJson(network);
   const frontData = await contract.getFrontendData();
   const abiCoder = ethers.AbiCoder.defaultAbiCoder();
   const [
@@ -162,26 +184,24 @@ const getFrontendData = async () => {
 };
 
 const getDrawDetails = async () => {
-  const { dayAmount, weekAmount, totalStaked } = await getFrontendData();
-  const networkList = ["CANTO", "Ethereum", "Matic"];
+  const cantoData = await getFrontendData("Canto");
+  const ethereumData = await getFrontendData("Ethereum");
+  const maticData = await getFrontendData("Matic");
+  const data = { Canto: cantoData, Ethereum: ethereumData, Matic: maticData };
+
+  const networkList = ["Canto", "Ethereum", "Matic"];
   const colors = { Canto: "#01e186", Ethereum: "#3e8fff", Matic: "#a46dff" };
   const list = networkList.map((item) => {
-    return item === "CANTO"
-      ? {
-          token: item,
-          deposit: parseFloat(formatEther(totalStaked)).toPrecision(4),
-          totalStaked: parseFloat(formatEther(totalStaked)).toPrecision(4),
-          daily: parseFloat(formatEther(dayAmount)).toPrecision(4),
-          super: parseFloat(formatEther(weekAmount)).toPrecision(4),
-          color: colors[item],
-        }
-      : {
-          token: item,
-          deposit: 0,
-          daily: 0,
-          super: 0,
-          color: colors[item],
-        };
+    return {
+      token: item,
+      deposit: formatAmount(parseFloat(formatEther(data[item].totalStaked))),
+      totalStaked: formatAmount(
+        parseFloat(formatEther(data[item].totalStaked))
+      ),
+      daily: formatAmount(parseFloat(formatEther(data[item].dayAmount))),
+      super: formatAmount(parseFloat(formatEther(data[item].weekAmount))),
+      color: colors[item],
+    };
   });
   const details = {
     Canto: list[0],
@@ -193,15 +213,19 @@ const getDrawDetails = async () => {
 };
 
 const getRecentWindfalls = async () => {
-  const { winningAmounts, winningTokens } = await getFrontendData();
-  const contract = await getContractJson();
-  const network = "Canto";
+  const cantoData = await getFrontendData("Canto");
+  const ethereumData = await getFrontendData("Ethereum");
+  const maticData = await getFrontendData("Matic");
+  const data = { Canto: cantoData, Ethereum: ethereumData, Matic: maticData };
+
+  const networkList = ["Canto", "Ethereum", "Matic"];
+
+  const contract = await getContractJson("Canto");
   const recentWindfalls = [];
 
   const drawCounter = await contract.drawCounter();
-  console.log(parseInt(drawCounter));
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 4; i++) {
     const currentDate = new Date();
     const currentHour = currentDate.getUTCHours();
     const currentMinute = currentDate.getUTCMinutes();
@@ -227,28 +251,29 @@ const getRecentWindfalls = async () => {
       titleType = "SUPER";
     }
 
-    let item = {
-      chain: network,
-      title: titleType,
-      date: formattedDate,
-      nft: `${network[0]}-${winningTokens[i]}`,
-      amount: parseFloat(formatEther(winningAmounts[i])).toPrecision(3),
-    };
-    recentWindfalls.push(item);
+    for (let j = 0; j < networkList.length; j++) {
+      let item = {
+        chain: networkList[j],
+        title: titleType,
+        date: formattedDate,
+        nft: `${networkList[j][0]}-${data[networkList[j]].winningTokens[i]}`,
+        amount: formatAmount(
+          parseFloat(formatEther(data[networkList[j]].winningAmounts[i]))
+        ),
+      };
+      recentWindfalls.push(item);
+    }
   }
-  console.log("Recent Windfalls: ", recentWindfalls);
   return recentWindfalls;
 };
 
 const connect = async () => {
-  const contract = await getContract();
-  const tokenContract = await getTokenContract();
-
   var data = {};
   const address = await getAddress();
-  const provider = await getProvider();
-  const network = await determineNetwork(provider);
+  const network = await determineNetwork();
   if (network !== "Other") {
+    const contract = await getContract();
+    const tokenContract = await getTokenContract();
     const tokens = await tokenContract.getTokensOfOwner(address);
 
     // Converts the uint[] returned to a normal array of numbers
@@ -260,13 +285,13 @@ const connect = async () => {
       const tokenMetaData = await contract.getMetadata(numberArray[i]);
       var tokenRewards = await contract.checkRewards(numberArray[i]);
       tokenRewards = ethers.formatUnits(tokenRewards, "ether");
-      tokenRewards = parseFloat(tokenRewards).toFixed(2);
-      if (tokenRewards == "0.00") tokenRewards = "0";
+      tokenRewards = formatAmount(parseFloat(tokenRewards));
       data.tokens[i] = processMetadata(tokenMetaData);
       data.tokens[i]["id"] = `${network[0]}-${numberArray[i]}`;
       data.tokens[i]["tokenId"] = numberArray[i];
       data.tokens[i]["reward"] = tokenRewards;
     }
+    console.log(data.tokens);
     data.chain = network;
 
     return data;
