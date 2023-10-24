@@ -39,8 +39,7 @@ const contracts = {
   Ethereum: {
     stakingContract: process.env.NEXT_PUBLIC_ETHEREUM_CONTRACT_ADDRESS,
     tokenContract: process.env.NEXT_PUBLIC_ETHEREUM_TOKEN_CONTRACT_ADDRESS,
-    rpcURL:
-      "https://eth-goerli.alchemyapi.io/v2/0-QmPnU59WPtWNtllZBsgeYW8UjPKxkg",
+    rpcURL: "https://goerli.infura.io/v3/feabfe61cc34425dae943b13d19d6f07",
   },
 };
 
@@ -126,13 +125,15 @@ const switchNetwork = async (network) => {
       },
       Ethereum: {
         chainId: "0x5", // Chain ID for Ethereum mainnet
-        chainName: "Goerli Testnet",
+        chainName: "Goerli",
         nativeCurrency: {
           name: "Ethereum",
           symbol: "ETH",
           decimals: 18,
         },
-        rpcUrls: ["https://mainnet.infura.io/v3/"],
+        rpcUrls: [
+          "https://goerli.infura.io/v3/feabfe61cc34425dae943b13d19d6f07",
+        ],
         blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
       },
       Matic: {

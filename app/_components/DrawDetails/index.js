@@ -8,12 +8,23 @@ import icons from "@/app/_assets/icons/icons";
 import { setWalletModal, setDepositModal } from "@/app/_redux/modals";
 import CountdownTimer from "./timer";
 import { getTimeTillNextDraw } from "@/app/_utils/time";
+import { useEffect } from "react";
 
 export default function DrawDetails() {
   const { connected } = useSelector((state) => state.user);
   const { drawDetails } = useSelector((state) => state.app);
   const dispatch = useDispatch();
   const timeTillNextDraw = getTimeTillNextDraw();
+
+  const dependencyArray = [
+    drawDetails.Canto.totalStaked,
+    drawDetails.Matic.totalStaked,
+    drawDetails.Ethereum.totalStaked,
+  ];
+
+  useEffect(() => {
+    console.log("This Ran");
+  }, dependencyArray);
 
   const handleDepositClick = () => {
     if (connected) {

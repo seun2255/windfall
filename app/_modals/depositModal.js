@@ -4,13 +4,20 @@ import icons from "../_assets/icons/icons";
 import styles from "./depositModal.module.css";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { animated, useSpring } from "@react-spring/web";
 import { setDepositModal } from "../_redux/modals";
+import { setDrawDetails } from "../_redux/app";
 import { updateUser } from "../_redux/user";
-import { getBalanceMinusGas, depositTokens, connect } from "../_utils/contract";
+import {
+  getBalanceMinusGas,
+  depositTokens,
+  connect,
+  getDrawDetails,
+} from "../_utils/contract";
 
 export default function DepositModal(props) {
+  const { chain } = useSelector((state) => state.app);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState(0);
@@ -59,7 +66,7 @@ export default function DepositModal(props) {
         <div className={styles.gradient__border}>
           <div className={styles.input__box}>
             <div className={styles.token__icon}>
-              <Image src={icons.canto} alt="token icon" fill />
+              <Image src={icons[chain.toLowerCase()]} alt="token icon" fill />
             </div>
             <input
               className={styles.input}

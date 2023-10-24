@@ -9,9 +9,10 @@ import {
   calculateTimeDifferenceFromTimestamp,
 } from "@/app/_utils/time";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { setDrawDetails } from "@/app/_redux/app";
+import { useSelector, useDispatch } from "react-redux";
 import calculatePercentage from "@/app/_utils/calculatePercentage";
-import { startUnStake, unstake, claimRewards } from "@/app/_utils/contract";
+import { getDrawDetails } from "@/app/_utils/contract";
 import {
   ClaimRewardButton,
   NoRewardButton,
@@ -22,38 +23,47 @@ import {
 
 export default function DepositBox(props) {
   const { data } = props;
+  const dispatch = useDispatch();
   const { chain, color, drawDetails } = useSelector((state) => state.app);
   const { user } = useSelector((state) => state.user);
   const [active, setActive] = useState(true);
   const [hasRewards, setHasRewards] = useState(false);
   const [unstaking, setUnstaking] = useState(false);
   const [unstakingBufferPeriod, setUnstakingBufferPeriod] = useState(true);
-  const percentage = calculatePercentage(
-    data.stakingAmount,
-    drawDetails[chain].totalStaked
-  );
+  const [percentage, setPercentage] = useState("");
+
+  const dependencyArray = [
+    user.deposits,
+    drawDetails.Canto.totalStaked,
+    drawDetails.Matic.totalStaked,
+    drawDetails.Ethereum.totalStaked,
+  ];
 
   useEffect(() => {
+    console.log("This ran again");
+    const percent = calculatePercentage(
+      data.stakingAmount,
+      drawDetails[chain].totalStaked
+    );
+    setPercentage(percent);
     const isValid = stakeValid(data.stakeTimestamp, data.unstakeTimestamp);
     setActive(isValid);
     const timeTillActive = calculateTimeDifferenceFromTimestamp(
       data.stakeTimestamp
     );
     if (timeTillActive !== 0) {
-      setTimeout(() => {
+      setTimeout(async () => {
+        const details = await getDrawDetails();
+        dispatch(setDrawDetails(details));
         setActive(true);
-      }, timeTillActive);
+      }, timeTillActive + 5000);
     }
     data.reward == "0" ? setHasRewards(false) : setHasRewards(true);
     data.unstakeTimestamp !== "0"
       ? setUnstakingBufferPeriod(true)
       : setUnstakingBufferPeriod(false);
     data.unstakeTimestamp !== "0" ? setUnstaking(true) : setUnstaking(false);
-  }, [user.deposits]);
-
-  const tokenIcons = {
-    Canto: icons.canto,
-  };
+  }, dependencyArray);
 
   return (
     <div className={styles.main}>
@@ -61,7 +71,7 @@ export default function DepositBox(props) {
         <div className={styles.amount__details}>
           <div className={styles.token} style={{ color: color }}>
             <div className={styles.token__icon}>
-              <Image src={tokenIcons[chain]} alt="canto logo" fill />
+              <Image src={icons[chain.toLowerCase()]} alt="canto logo" fill />
             </div>
             {chain.toUpperCase()}
           </div>

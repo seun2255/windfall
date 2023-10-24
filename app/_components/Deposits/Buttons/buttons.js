@@ -5,7 +5,9 @@ import {
   unstake,
   startUnStake,
   connect,
+  getDrawDetails,
 } from "@/app/_utils/contract";
+import { setDrawDetails } from "@/app/_redux/app";
 import { calculateUnstakePeriod } from "@/app/_utils/time";
 import { useDispatch } from "react-redux";
 import { updateUser } from "@/app/_redux/user";
@@ -132,6 +134,8 @@ function UnstakeButton(props) {
     if (data.unstakeTimestamp == "0") {
       setUnstaking(true);
       await startUnStake(data.tokenId);
+      const drawDetails = await getDrawDetails();
+      dispatch(setDrawDetails(drawDetails));
       setUnstakingBufferPeriod(true);
       showBuffer(true);
       const details = await connect();
