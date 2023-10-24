@@ -22,6 +22,7 @@ export default function Home() {
   const [hydrate, setHydrate] = useState(false);
   const dispatch = useDispatch();
 
+  // Rettrives all the frontend data fro the blockcahin before rendering
   useEffect(() => {
     const getData = async () => {
       const details = await getDrawDetails();
@@ -38,11 +39,14 @@ export default function Home() {
   if (hydrate) {
     return (
       <main className={styles.main}>
+        {/* Components for the various sections of the app */}
         <Header />
         <DrawDetails />
         <Deposits />
         <RecentWindfalls />
         <Footer />
+
+        {/* The various pop up modals */}
         {walletModal && <ConnectWalletModal />}
         {depositModal && <DepositModal />}
         {networkModal && <NetworkModal />}
