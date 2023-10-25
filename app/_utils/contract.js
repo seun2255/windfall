@@ -387,11 +387,12 @@ const startUnStake = async (_tokenId) => {
  * @param {*} _tokenId the id for the nft/deposit the user which to unstake
  */
 const unstake = async (_tokenId) => {
+  const network = await determineNetwork();
   const tokenContract = await getTokenContract();
   const contract = await getContract();
 
   const approvalTx = await tokenContract.approve(
-    process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+    contracts[network].stakingContract,
     _tokenId
   );
 
