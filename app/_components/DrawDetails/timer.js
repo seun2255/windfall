@@ -21,8 +21,14 @@ function CountdownTimer({ targetTime }) {
   }, [targetTime]);
 
   // Convert milliseconds to hours, minutes, seconds
-  const hours = Math.floor((timeLeft / 1000 / 3600) % 24);
-  const minutes = Math.floor((timeLeft / 1000 / 60) % 60);
+  const hours = String(Math.floor((timeLeft / 1000 / 3600) % 24)).padStart(
+    2,
+    "0"
+  );
+  const minutes = String(Math.floor((timeLeft / 1000 / 60) % 60)).padStart(
+    2,
+    "0"
+  );
 
   return (
     <div className={styles.timer}>
