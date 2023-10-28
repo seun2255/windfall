@@ -21,6 +21,8 @@ export default function DepositModal(props) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState(0);
+  const [belowMinimum, setBelowMinimum] = useState(false);
+  const [depositing, setDepositing] = useState(false);
 
   const popUpEffect = useSpring({
     opacity: open ? 1 : 0,
@@ -37,13 +39,28 @@ export default function DepositModal(props) {
   };
 
   const handleDeposit = () => {
-    var depositAmount = amount.toString();
+    if (amount >= minimumAmounts[chain]) {
+      var depositAmount = amount.toString();
+      setDepositing(true);
 
-    depositTokens(depositAmount).then(async () => {
-      const data = await connect();
-      dispatch(updateUser({ address: data.address, deposits: data.tokens }));
-      dispatch(setDepositModal(false));
-    });
+      depositTokens(depositAmount).then(async () => {
+        const data = await connect();
+        dispatch(updateUser({ address: data.address, deposits: data.tokens }));
+        setDepositing(false);
+        dispatch(setDepositModal(false));
+      });
+    } else {
+      setBelowMinimum(true);
+      setTimeout(() => {
+        setBelowMinimum(false);
+      }, 3000);
+    }
+  };
+
+  const minimumAmounts = {
+    Canto: 0.1,
+    Ethereum: 0.001,
+    Mumbai: 0.01,
   };
 
   return (
@@ -81,13 +98,47 @@ export default function DepositModal(props) {
             </button>
           </div>
         </div>
-        <button className={styles.deposit__button} onClick={handleDeposit}>
-          Deposit
-        </button>
+        {belowMinimum ? (
+          <BelowMinimumButton amount={minimumAmounts[chain]} chain={chain} />
+        ) : (
+          <button
+            className={styles.deposit__button}
+            onClick={handleDeposit}
+            style={
+              depositing
+                ? {
+                    background: "none",
+                    backgroundColor: "white",
+                    color: "rgba(30, 86, 104, 1)",
+                  }
+                : null
+            }
+          >
+            {depositing ? (
+              <span>
+                Staking <span className={styles.blink}>...</span>
+              </span>
+            ) : (
+              "Deposit"
+            )}
+          </button>
+        )}
         <span className={styles.info}>
           Looking for a different pool? Change your wallet’s network.{" "}
         </span>
       </animated.div>
     </div>
+  );
+}
+
+function BelowMinimumButton(props) {
+  const { amount, chain } = props;
+  return (
+    <button
+      className={styles.deposit__button}
+      style={{ background: "#952727", color: "white" }}
+    >
+      Minimum deposit amount is {`${amount} ${chain}`}
+    </button>
   );
 }

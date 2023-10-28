@@ -1,9 +1,9 @@
 .container {
   width: 100%;
   box-sizing: border-box;
-  padding: 108px 8%;
+  padding: 108px 7%;
   display: flex;
-  column-gap: 180px;
+  justify-content: space-between;
 }
 
 .logo__box {
@@ -16,10 +16,11 @@
 .logo {
   font-family: "Lato";
   font-size: 37px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 3px;
   color: #ffffff;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .logo > span {
@@ -29,10 +30,10 @@
 
 .flower {
   position: absolute;
-  left: -1%;
+  left: -29%;
   top: -15px;
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
 }
 
 .logo__box > span {
@@ -43,7 +44,7 @@
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.08px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .socials {
@@ -58,9 +59,11 @@
 }
 
 .links {
+  width: 50%;
   display: flex;
-  column-gap: 140px;
-  margin-top: 20px;
+  margin-top: 10px;
+  padding-right: 80px;
+  justify-content: space-between;
 }
 
 .link__box {
@@ -90,7 +93,87 @@
   letter-spacing: -0.08px;
 }
 
-@media screen and (max-width: 920px) {
+/* Desktop Sizes */
+@media (max-width: 1068px) {
+  .links {
+    padding-right: 50px;
+  }
+}
+
+@media (max-width: 971px) {
+  .links {
+    width: 55%;
+    padding-right: 10px;
+  }
+
+  @media (max-width: 832px) {
+    .links {
+      padding-right: 0px;
+    }
+
+    .logo {
+      font-size: 30px;
+    }
+
+    .logo__box > span {
+      font-size: 14px;
+    }
+
+    .link__box > h4 {
+      font-size: 14px;
+    }
+
+    .link__box p {
+      font-size: 14px;
+    }
+
+    .flower {
+      position: absolute;
+      left: -25%;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .logo {
+      font-size: 24px;
+    }
+
+    .logo__box > span {
+      font-size: 13px;
+    }
+
+    .link__box > h4 {
+      font-size: 13px;
+    }
+
+    .link__box p {
+      font-size: 13px;
+    }
+
+    .flower {
+      position: absolute;
+      left: -25%;
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  @media (max-width: 628px) {
+    .links {
+      width: 60%;
+    }
+  }
+
+  @media (max-width: 557px) {
+    .container {
+      padding: 108px 3%;
+    }
+  }
+}
+/* Mobile styles */
+@media screen and (max-width: 480px) {
   .container {
     padding: 52px 7.15%;
     display: flex;
@@ -140,9 +223,11 @@
   }
 
   .links {
+    width: 100%;
     display: flex;
     flex-direction: column;
     row-gap: 47px;
+    padding-right: 0px;
   }
 
   .link__box {

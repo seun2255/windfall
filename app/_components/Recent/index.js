@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
 export default function RecentWindfalls() {
-  const isMobile = useMediaQuery({ maxWidth: 920 });
   const dispatch = useDispatch();
   const { recentWindfalls } = useSelector((state) => state.app);
 
@@ -24,14 +23,13 @@ export default function RecentWindfalls() {
           <thead className={styles.table__head}>
             <tr>
               <th>WINDFALL</th>
-              <th>DATE</th>
-              {!isMobile && <th>NFT</th>}
+              <th>NFT</th>
               <th>AMOUNT</th>
             </tr>
           </thead>
           <tbody className={styles.table__body}>
             {recentWindfalls.map((item, id) => {
-              return isMobile ? (
+              return (
                 <tr
                   className={styles[`row__${id}`]}
                   key={id}
@@ -46,27 +44,6 @@ export default function RecentWindfalls() {
                     </p>
                     <p className={styles.date__mobile}>{item.date}</p>
                   </td>
-                  <td>{item.nft}</td>
-                  <td>
-                    {item.amount}{" "}
-                    <span style={{ color: colors[item.chain] }}>
-                      {item.chain}
-                    </span>
-                  </td>
-                </tr>
-              ) : (
-                <tr
-                  className={styles[`row__${id}`]}
-                  key={id}
-                  style={item.title === "SUPER" ? { color: "#FBFF3E" } : null}
-                >
-                  <td>
-                    <span style={{ color: colors[item.chain] }}>
-                      {item.chain}
-                    </span>{" "}
-                    {item.title}
-                  </td>
-                  <td>{item.date}</td>
                   <td>{item.nft}</td>
                   <td>
                     {item.amount}{" "}

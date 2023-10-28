@@ -13,7 +13,7 @@
   font-size: 40px;
   line-height: 48px;
   padding-bottom: 15px;
-  border-bottom: 1px solid hsla(0, 0%, 100%, 0.6);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.2);
   margin-bottom: 100px;
 }
 
@@ -30,7 +30,7 @@
 }
 
 /* Mobile Styles */
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 480px) {
   .main {
     padding-top: 62px;
     padding-bottom: 0px;

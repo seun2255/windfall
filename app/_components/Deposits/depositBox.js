@@ -95,8 +95,8 @@ export default function DepositBox(props) {
             {!unstakingBufferPeriod
               ? active
                 ? "Live"
-                : "INACTIVE"
-              : "INACTIVE"}
+                : "Inactive"
+              : "Inactive"}
           </div>
           <span>{data.id}</span>
         </div>

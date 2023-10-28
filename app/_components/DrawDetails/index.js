@@ -5,14 +5,18 @@ import styles from "./index.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import images from "@/app/_assets/img/img";
 import icons from "@/app/_assets/icons/icons";
-import { setWalletModal, setDepositModal } from "@/app/_redux/modals";
+import {
+  setWalletModal,
+  setDepositModal,
+  setNetworkModal,
+} from "@/app/_redux/modals";
 import CountdownTimer from "./timer";
 import { getTimeTillNextDraw } from "@/app/_utils/time";
 import { useEffect } from "react";
 
 export default function DrawDetails() {
   const { connected } = useSelector((state) => state.user);
-  const { drawDetails } = useSelector((state) => state.app);
+  const { drawDetails, chain } = useSelector((state) => state.app);
   const dispatch = useDispatch();
   const timeTillNextDraw = getTimeTillNextDraw();
 
@@ -28,7 +32,9 @@ export default function DrawDetails() {
 
   const handleDepositClick = () => {
     if (connected) {
-      dispatch(setDepositModal(true));
+      chain === "Other"
+        ? dispatch(setNetworkModal(true))
+        : dispatch(setDepositModal(true));
     } else {
       dispatch(setWalletModal(true));
       dispatch(setDepositModal(true));

@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import formatAmount from "./formatAmount";
 
 function processMetadata(dataString) {
   try {
@@ -13,7 +14,7 @@ function processMetadata(dataString) {
     }
 
     const amountInEthers = ethers.formatUnits(result["stakingAmount"], "ether");
-    result["stakingAmount"] = parseFloat(amountInEthers).toFixed(2);
+    result["stakingAmount"] = formatAmount(parseFloat(amountInEthers));
 
     return result;
   } catch (error) {

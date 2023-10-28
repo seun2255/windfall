@@ -14,7 +14,7 @@
 .logo {
   font-family: "Lato";
   font-size: 37px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 3px;
   color: #ffffff;
 }
@@ -26,10 +26,10 @@
 
 .flower {
   position: absolute;
-  left: -1.5%;
+  left: -29%;
   top: -15px;
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
 }
 
 .wallet__connect__button {
@@ -59,21 +59,45 @@
 
 .outer__circle {
   position: absolute;
-  left: -55px;
-  top: 4px;
+  left: -60px;
+  top: -2px;
   margin: auto 0px;
   box-sizing: border-box;
-  padding: 2px;
+  padding: 8px;
   border-radius: 30px;
 }
 
 .icon {
   position: relative;
-  width: 29px;
-  height: 29px;
+  width: 26px;
+  height: 26px;
 }
 
-@media screen and (max-width: 920px) {
+.networks {
+  position: absolute;
+  opacity: 0;
+  left: -105px;
+  top: 0px;
+  display: flex;
+  column-gap: 8px;
+}
+
+.network__outer__circle {
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: 30px;
+}
+
+@media screen and (max-width: 635px) {
+  .networks {
+    left: 0px;
+    top: 50px;
+    display: flex;
+    column-gap: 8px;
+  }
+}
+
+@media screen and (max-width: 480px) {
   .main {
     padding: 42px 29px;
   }
@@ -101,5 +125,12 @@
     padding: 11.199px 26.123px 11.116px 26.877px;
     justify-content: center;
     align-items: center;
+  }
+
+  .networks {
+    left: 0px;
+    top: 50px;
+    display: flex;
+    column-gap: 8px;
   }
 }

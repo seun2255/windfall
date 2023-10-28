@@ -114,7 +114,7 @@ function FinishUnstakingButton(props) {
       onClick={handleClick}
       style={
         !withdrawing
-          ? { color: "white", backgroundColor: "rgba(255, 62, 62, 1)" }
+          ? { color: "white", backgroundColor: "rgba(255, 62, 62, 0.30)" }
           : null
       }
     >

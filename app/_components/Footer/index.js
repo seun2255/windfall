@@ -4,10 +4,16 @@ import styles from "./index.module.css";
 import icons from "@/app/_assets/icons/icons";
 
 export default function Footer() {
+  const handleLogoClick = () => {
+    console.log("Scrolling");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    console.log("Scrolled");
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.logo__box}>
-        <div className={styles.logo}>
+        <div className={styles.logo} onClick={handleLogoClick}>
           W
           <span>
             <div className={styles.flower}>
@@ -17,14 +23,19 @@ export default function Footer() {
           </span>
           NDFALL
         </div>
+
         <span>© Windfall 2023</span>
         <div className={styles.socials}>
-          <div className={styles.social__icon}>
-            <Image src={icons.twitter} alt="social icon" fill />
-          </div>
-          <div className={styles.social__icon}>
-            <Image src={icons.discord} alt="social icon" fill />
-          </div>
+          <Link href={"https://twitter.com/WindfallStaking"} target="_blank">
+            <div className={styles.social__icon}>
+              <Image src={icons.twitter} alt="social icon" fill />
+            </div>
+          </Link>
+          <Link href={"https://discord.gg/KUThbg7Bnx"} target="_blank">
+            <div className={styles.social__icon}>
+              <Image src={icons.discord} alt="social icon" fill />
+            </div>
+          </Link>
         </div>
       </div>
       <div className={styles.links}>

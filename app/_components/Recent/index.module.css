@@ -31,7 +31,6 @@
   text-align: center;
   font-family: "Satoshi";
   font-size: 40px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.2px;
@@ -43,7 +42,7 @@
 .title__underline {
   width: 130%;
   height: 1px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .display {
@@ -72,9 +71,9 @@
   padding-left: 25px;
 }
 
-.table__head > tr th:nth-child(4) {
+.table__head > tr th:nth-child(3) {
   text-align: right !important;
-  padding-right: 80px;
+  padding-right: 40px;
 }
 
 .table__body {
@@ -96,15 +95,44 @@
 }
 
 .table__body > tr td:nth-child(3) {
-  text-align: center;
+  text-align: right;
 }
 
 .table__body > tr td:nth-child(4) {
   text-align: right;
 }
 
+/* Desktop sizes */
+@media (max-width: 849px) {
+  .display {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 774px) {
+  .display {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 679px) {
+  .display {
+    font-size: 14px;
+  }
+
+  .main {
+    padding: 30px 50px;
+  }
+}
+
+@media (max-width: 554px) {
+  .main {
+    padding: 30px 30px;
+  }
+}
+
 /* Mobile Styles */
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 480px) {
   .container {
     padding-top: 95px;
   }
@@ -149,9 +177,9 @@
     padding-left: 0px;
   }
 
-  .table__head > tr th:nth-child(4) {
+  .table__head > tr th:nth-child(3) {
     text-align: inherit;
-    padding-right: 0px;
+    padding-right: 45px;
   }
 
   .row__0 td {
@@ -182,7 +210,7 @@
     row-gap: 1px;
   }
 
-  .table__body > tr td:nth-child(4) {
+  .table__body > tr td:nth-child(3) {
     text-align: center;
   }
 

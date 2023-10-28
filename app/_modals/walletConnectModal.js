@@ -11,7 +11,7 @@ import {
   setDepositModal,
   setNetworkModal,
 } from "../_redux/modals";
-import { connect } from "../_utils/contract";
+import { connect, det } from "../_utils/contract";
 import { login } from "../_redux/user";
 import { setAppData } from "../_redux/app";
 
@@ -19,7 +19,8 @@ export default function ConnectWalletModal(props) {
   const { depositModal } = useSelector((state) => state.modals);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [checked, setChecked] = useState(false);
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(false);
 
   const popUpEffect = useSpring({
     opacity: open ? 1 : 0,
@@ -30,13 +31,17 @@ export default function ConnectWalletModal(props) {
     setOpen(true);
   }, []);
 
-  const handleCheckBox = () => {
-    344;
-    setChecked(!checked);
+  const handleCheckBox1 = () => {
+    setChecked1(!checked1);
+  };
+
+  const handleCheckBox2 = () => {
+    setChecked2(!checked2);
   };
 
   const handleConnect = async () => {
-    if (checked) {
+    // If a second checkbox is added change this to if(checked1 && checked2)
+    if (checked1) {
       const data = await connect();
       const colors = {
         Canto: "#01e186",
@@ -51,6 +56,25 @@ export default function ConnectWalletModal(props) {
         dispatch(login({ address: data.address, deposits: data.tokens }));
         dispatch(setWalletModal(false));
       }
+
+      window.ethereum.on("networkChanged", async () => {
+        const data = await connect();
+        const colors = {
+          Canto: "#01e186",
+          Ethereum: "#3e8fff",
+          Matic: "#a46dff",
+        };
+        dispatch(setAppData({ color: colors[data.chain], chain: data.chain }));
+        if (data.chain === "Other") {
+          dispatch(login({ address: "", deposits: [] }));
+          dispatch(setDepositModal(false));
+          dispatch(setWalletModal(false));
+          dispatch(setNetworkModal(true));
+        } else {
+          dispatch(login({ address: data.address, deposits: data.tokens }));
+          dispatch(setWalletModal(false));
+        }
+      });
     }
   };
 
@@ -61,10 +85,11 @@ export default function ConnectWalletModal(props) {
         e.stopPropagation();
         if (depositModal) {
           dispatch(setDepositModal(false));
-          dispatch(setWalletModal(false));
         }
+        dispatch(setWalletModal(false));
       }}
     >
+      <div className={styles.blurry__background}></div>
       <animated.div
         className={styles.main}
         style={popUpEffect}
@@ -74,20 +99,43 @@ export default function ConnectWalletModal(props) {
         }}
       >
         <h3 className={styles.title}>Connect your wallet</h3>
+        {/* First Term */}
         <div className={styles.terms}>
           <div
             className={styles.bubble}
-            onClick={handleCheckBox}
+            onClick={handleCheckBox1}
             style={
-              checked
-                ? { backgroundColor: "#01e186", borderColor: "#01e186" }
+              checked1
+                ? { backgroundColor: "#01e186", borderColor: "#009358" }
                 : null
             }
           ></div>
           <span className={styles.text}>
-            By connecting a wallet, I have read and agree to Windfall’s Terms of
-            Use, Risks, Cookies Policy, use of 3rd party services, and Privacy
-            Policy.
+            By connecting a wallet, I have read and agree to Windfall’s{" "}
+            <span>Terms of Use</span>, <span>Risks</span>,{" "}
+            <span>Cookies Policy</span>, use of <span>3rd party services</span>,
+            and <span>Privacy Policy</span>.
+          </span>
+        </div>
+        {/* Second term (remove the style below on line 121 to show this) */}
+        <div className={styles.terms} style={{ display: "none" }}>
+          <div
+            className={styles.bubble}
+            onClick={handleCheckBox2}
+            style={
+              checked2
+                ? {
+                    backgroundColor: "#01e186",
+                    borderColor: "#009358",
+                  }
+                : null
+            }
+          ></div>
+          <span className={styles.text}>
+            By connecting a wallet, I have read and agree to Windfall’s{" "}
+            <span>Terms of Use</span>, <span>Risks</span>,{" "}
+            <span>Cookies Policy</span>, use of <span>3rd party services</span>,
+            and <span>Privacy Policy</span>.
           </span>
         </div>
         <div className={styles.gradient__border} onClick={handleConnect}>
