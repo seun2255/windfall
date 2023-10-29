@@ -165,7 +165,7 @@ const switchNetwork = async (network) => {
           symbol: "ETH",
           decimals: 18,
         },
-        rpcUrls: ["https://api.infura.io/v1/jsonrpc/goerli"],
+        rpcUrls: ["https://goerli.infura.io/v3"],
         blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
       };
 
