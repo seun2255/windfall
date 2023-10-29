@@ -124,17 +124,15 @@ const switchNetwork = async (network) => {
         blockExplorerUrls: ["https://testnet.tuber.build/"],
       },
       Ethereum: {
-        chainId: "0x5", // Chain ID for Ethereum mainnet
-        chainName: "Goerli",
+        chainId: "0x1", // Chain ID for Ethereum mainnet
+        chainName: "Mainnet",
         nativeCurrency: {
           name: "Ethereum",
           symbol: "ETH",
           decimals: 18,
         },
-        rpcUrls: [
-          "https://goerli.infura.io/v3/feabfe61cc34425dae943b13d19d6f07",
-        ],
-        blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
+        rpcUrls: ["https://eth-mainnet-public.unifra.io"],
+        blockExplorerUrls: ["https://etherscan.io/"], // Ethereum block explorer URL
       },
       Matic: {
         chainId: "0x13881", // Chain ID for Matic mainnet
@@ -150,7 +148,6 @@ const switchNetwork = async (network) => {
     };
 
     try {
-      // Add the Matic network to MetaMask
       await provider.request({
         method: "wallet_addEthereumChain",
         params: [Networks[network]],
