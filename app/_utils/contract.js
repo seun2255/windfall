@@ -131,9 +131,7 @@ const switchNetwork = async (network) => {
           symbol: "ETH",
           decimals: 18,
         },
-        rpcUrls: [
-          "https://goerli.infura.io/v3/feabfe61cc34425dae943b13d19d6f07",
-        ],
+        rpcUrls: ["https://rpc.goerli.eth.gateway.fm"],
         blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
       },
       Matic: {
