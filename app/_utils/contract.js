@@ -158,13 +158,13 @@ const switchNetwork = async (network) => {
       alert("Alternative");
       const Ethereum = {
         chainId: "0x5", // Chain ID for Ethereum mainnet
-        chainName: "Goerli Testnet",
+        chainName: "Goerli Test Network",
         nativeCurrency: {
           name: "Goerli",
-          symbol: "tETH",
+          symbol: "ETH",
           decimals: 18,
         },
-        rpcUrls: ["https://ethereum-goerli.publicnode.com"],
+        rpcUrls: ["https://goerli.infura.io/v3/"],
         blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
       };
 
