@@ -149,29 +149,33 @@ const switchNetwork = async (network) => {
       },
     };
 
-    // Add the Matic network to MetaMask
-    await provider.request({
-      method: "wallet_addEthereumChain",
-      params: [Networks[network]],
-    });
-  } else {
-    alert("Reached here");
-    const Ethereum = {
-      chainId: "0x5", // Chain ID for Ethereum mainnet
-      chainName: "Goerli",
-      nativeCurrency: {
-        name: "Ethereum",
-        symbol: "ETH",
-        decimals: 18,
-      },
-      rpcUrls: ["https://api.infura.io/v1/jsonrpc/goerli"],
-      blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
-    };
+    try {
+      // Add the Matic network to MetaMask
+      await provider.request({
+        method: "wallet_addEthereumChain",
+        params: [Networks[network]],
+      });
+    } catch (switchError) {
+      alert("Reached here");
+      const Ethereum = {
+        chainId: "0x5", // Chain ID for Ethereum mainnet
+        chainName: "Goerli",
+        nativeCurrency: {
+          name: "Ethereum",
+          symbol: "ETH",
+          decimals: 18,
+        },
+        rpcUrls: ["https://api.infura.io/v1/jsonrpc/goerli"],
+        blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
+      };
 
-    await provider.request({
-      method: "wallet_addEthereumChain",
-      params: [Ethereum],
-    });
+      await provider.request({
+        method: "wallet_addEthereumChain",
+        params: [Ethereum],
+      });
+    }
+  } else {
+    console.log("No metamask provider");
   }
 };
 
