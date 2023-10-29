@@ -6,6 +6,7 @@
 
 .main {
   width: 85%;
+  max-width: 850px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: linear-gradient(
@@ -62,7 +63,6 @@
 
 .table__head > tr th {
   padding-bottom: 20px;
-  padding-right: 30px;
   text-align: center !important;
 }
 
@@ -71,9 +71,14 @@
   padding-left: 25px;
 }
 
+.table__head > tr th:nth-child(2) {
+  text-align: center !important;
+  padding-right: 25px;
+}
+
 .table__head > tr th:nth-child(3) {
   text-align: right !important;
-  padding-right: 40px;
+  padding-right: 25px;
 }
 
 .table__body {
@@ -87,18 +92,14 @@
 
 .table__body > tr td {
   padding-bottom: 30px;
-  padding-right: 30px;
 }
 
 .table__body > tr td:nth-child(2) {
   text-align: center;
+  padding-right: 25px;
 }
 
 .table__body > tr td:nth-child(3) {
-  text-align: right;
-}
-
-.table__body > tr td:nth-child(4) {
   text-align: right;
 }
 
@@ -106,6 +107,16 @@
 @media (max-width: 849px) {
   .display {
     font-size: 18px;
+  }
+
+  .table__head > tr th:nth-child(2) {
+    text-align: center !important;
+    padding-right: 15px;
+  }
+
+  .table__body > tr td:nth-child(2) {
+    text-align: center;
+    padding-right: 15px;
   }
 }
 
@@ -123,6 +134,16 @@
   .main {
     padding: 30px 50px;
   }
+
+  .table__head > tr th:nth-child(2) {
+    text-align: center !important;
+    padding-right: 10px;
+  }
+
+  .table__body > tr td:nth-child(2) {
+    text-align: center;
+    padding-right: 10px;
+  }
 }
 
 @media (max-width: 554px) {
@@ -134,7 +155,7 @@
 /* Mobile Styles */
 @media screen and (max-width: 480px) {
   .container {
-    padding-top: 95px;
+    padding-top: 0px;
   }
 
   .main {
@@ -147,7 +168,7 @@
   .title {
     font-size: 22px;
     font-weight: 700;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 
   .display {
@@ -161,7 +182,6 @@
   .table__head {
     text-align: center;
     font-size: 14px;
-    font-weight: 600;
     font-family: "Lato";
     width: 100%;
   }
@@ -170,6 +190,7 @@
     padding-bottom: 0px;
     padding-right: 0px;
     padding-bottom: 22px;
+    font-weight: 500 !important;
   }
 
   .table__head > tr th:nth-child(1) {
@@ -179,7 +200,7 @@
 
   .table__head > tr th:nth-child(3) {
     text-align: inherit;
-    padding-right: 45px;
+    padding-right: 20px;
   }
 
   .row__0 td {
@@ -212,6 +233,8 @@
 
   .table__body > tr td:nth-child(3) {
     text-align: center;
+    position: relative;
+    left: 20px;
   }
 
   .title__mobile {

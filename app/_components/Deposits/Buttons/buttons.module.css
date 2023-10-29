@@ -39,12 +39,27 @@
   height: 100%;
   width: 33%;
   display: flex;
+  font-size: 15.7px;
   align-items: center;
   justify-content: center;
   border: 1px solid hsla(0, 100%, 62%, 0.7);
   background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.1), #ffffff00);
   color: rgba(255, 62, 62, 1);
   cursor: pointer;
+}
+
+.blink {
+  animation: blink 1.5s steps(2, start) infinite;
+  opacity: 1;
+  font-size: 1em;
+  position: relative;
+  font-family: "Lato";
+}
+
+@keyframes blink {
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Mobile Styles */

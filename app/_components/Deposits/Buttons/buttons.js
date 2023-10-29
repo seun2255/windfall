@@ -118,7 +118,13 @@ function FinishUnstakingButton(props) {
           : null
       }
     >
-      {withdrawing ? "Withdrawing" : "Finish Unstaking"}
+      {withdrawing ? (
+        <span>
+          Withdrawing <span className={styles.blink}>...</span>
+        </span>
+      ) : (
+        "Finish Unstaking"
+      )}
     </button>
   );
 }

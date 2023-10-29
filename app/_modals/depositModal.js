@@ -116,7 +116,7 @@ export default function DepositModal(props) {
           >
             {depositing ? (
               <span>
-                Staking <span className={styles.blink}>...</span>
+                Staking<span className={styles.blink}>...</span>
               </span>
             ) : (
               "Deposit"

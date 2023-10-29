@@ -89,7 +89,6 @@ export default function ConnectWalletModal(props) {
         dispatch(setWalletModal(false));
       }}
     >
-      <div className={styles.blurry__background}></div>
       <animated.div
         className={styles.main}
         style={popUpEffect}

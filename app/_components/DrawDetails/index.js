@@ -80,7 +80,7 @@ export default function DrawDetails() {
         </table>
 
         <button className={styles.button} onClick={handleDepositClick}>
-          Deposit
+          DEPOSIT
         </button>
 
         {/* Background colored ball icons */}

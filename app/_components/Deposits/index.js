@@ -18,7 +18,7 @@ export default function Deposits() {
         <h2>
           Your{" "}
           <span className={styles.chain} style={{ color: color }}>
-            {chain}
+            {chain.toUpperCase()}
           </span>{" "}
           Deposits
         </h2>

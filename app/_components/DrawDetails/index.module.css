@@ -18,11 +18,11 @@
 
 .box {
   position: relative;
-  width: 807px;
+  width: 837px;
   box-sizing: border-box;
-  padding: 60px;
+  padding: 52px 51px 53px 66px;
   border-radius: 10px;
-  border: 1px solid #ffffff;
+  border: 1px solid hsla(0, 0%, 100%, 0.3);
   box-shadow: -100px 88px 159px 0 rgba(17, 138, 178, 0.25);
   z-index: 1;
   background: linear-gradient(to bottom, #113844, #000101);
@@ -72,7 +72,7 @@
 .blink {
   animation: blink 1.5s steps(2, start) infinite;
   opacity: 1;
-  font-size: 1.4em;
+  font-size: 1.2em;
   position: relative;
   bottom: 0.1em;
   font-family: "Lato";
@@ -85,12 +85,13 @@
 }
 
 .display {
-  width: 95%;
+  width: 97%;
   border-collapse: collapse;
   margin-bottom: 20px;
   font-size: 26px;
   font-family: "Satoshi";
-  font-weight: 300 !important;
+  letter-spacing: -0.13px;
+  font-weight: 400;
 }
 
 .table__head {
@@ -101,7 +102,8 @@
 
 .table__head > tr th {
   padding-bottom: 30px;
-  padding-right: 30px;
+
+  font-weight: 400;
 }
 
 .table__body {
@@ -111,7 +113,8 @@
 
 .table__body > tr td {
   padding-bottom: 30px;
-  padding-right: 30px;
+
+  font-weight: 400;
 }
 
 .row__0 td {
@@ -129,11 +132,14 @@
 
 .last__column {
   border-left: 1px solid rgba(255, 255, 255, 0.288);
-  padding-left: 30px;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  position: relative;
+  left: 40px;
 }
 
 .button {
-  width: 95%;
+  width: 97%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,147 +206,6 @@
   height: 36px;
   top: 88%;
   right: -165px;
-}
-
-/* Mobile Style */
-@media screen and (max-width: 480px) {
-  .main {
-    width: 100%;
-    box-sizing: border-box;
-    padding-top: 25px !important;
-  }
-
-  .background__twirl {
-    width: 100%;
-    height: 135px;
-    top: 20px;
-  }
-
-  .box {
-    width: 80%;
-    display: inline-flex;
-    padding: 34px 6.295px 77.5px 9px;
-    flex-direction: column;
-    align-items: center;
-    gap: 35px;
-  }
-
-  .top {
-    display: flex;
-    flex-direction: column;
-    width: 247px;
-    align-items: center;
-    gap: 7.077px;
-    margin-bottom: 0px;
-  }
-
-  .top > span {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-
-  .timer__icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .timer {
-    width: 225px;
-    padding: 5px 0px;
-    border-radius: 10.8px;
-    font-size: 20px;
-    column-gap: 7px;
-  }
-
-  .display {
-    width: 98%;
-    border-collapse: collapse;
-    font-family: "Satoshi";
-    font-weight: 300 !important;
-    margin-bottom: 0px;
-  }
-
-  .table__head {
-    border-bottom: none;
-    text-align: left;
-    color: white;
-    background: rgba(255, 255, 255, 0.05);
-    font-size: 12px;
-  }
-
-  .table__head > tr th {
-    padding: 10px;
-    border: none !important;
-  }
-
-  .table__body {
-    padding-top: 30px;
-    font-weight: 500;
-    font-size: 11.4px;
-  }
-
-  .table__body > tr {
-    gap: 26px;
-  }
-
-  .table__body > tr td {
-    padding: 15px;
-  }
-
-  .row__0 td {
-    padding-top: 36px;
-    color: #01e186;
-  }
-
-  .row__1 td {
-    color: #3e8fff;
-  }
-
-  .row__2 td {
-    color: #a46dff;
-  }
-
-  .last__column {
-    border-left: 1px solid rgba(255, 255, 255, 0.288);
-    text-align: center;
-  }
-
-  .button {
-    font-size: 11px;
-    padding: 8px 0px;
-    border-radius: 13.31px;
-  }
-
-  .button:active {
-    background: none;
-    background-color: white;
-    color: rgba(30, 86, 104, 1);
-  }
-
-  /* Colored Background balls */
-  .ball1 {
-    display: none;
-  }
-
-  .ball2 {
-    display: none;
-  }
-
-  .ball3 {
-    display: none;
-  }
-
-  .ball4 {
-    display: none;
-  }
-
-  .ball5 {
-    display: none;
-  }
-
-  .ball6 {
-    display: none;
-  }
 }
 
 /* Responsive text size */
@@ -425,5 +290,149 @@
 
   .display {
     font-size: 14px;
+  }
+}
+
+/* Mobile Style */
+@media screen and (max-width: 480px) {
+  .main {
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 25px !important;
+    padding-bottom: 62px !important;
+  }
+
+  .background__twirl {
+    width: 100%;
+    height: 135px;
+    top: 20px;
+  }
+
+  .box {
+    width: 80%;
+    display: inline-flex;
+    padding: 34px 6.295px 34px 9px;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    width: 247px;
+    align-items: center;
+    gap: 7.077px;
+    margin-bottom: 0px;
+  }
+
+  .top > span {
+    font-size: 20px;
+    margin-bottom: 20px !important;
+  }
+
+  .timer__icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .timer {
+    width: 225px;
+    padding: 5px 0px;
+    border-radius: 10.8px;
+    font-size: 20px;
+    column-gap: 7px;
+  }
+
+  .display {
+    width: 98%;
+    border-collapse: collapse;
+    font-family: "Satoshi";
+    font-weight: 300 !important;
+    margin-bottom: 0px;
+  }
+
+  .table__head {
+    border-bottom: none;
+    text-align: left;
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .table__head > tr th {
+    padding: 10px;
+    border: none !important;
+  }
+
+  .table__body {
+    padding-top: 30px;
+    font-weight: 400;
+    font-size: 11.4px;
+  }
+
+  .table__body > tr {
+    gap: 26px;
+  }
+
+  .table__body > tr td {
+    padding: 15px;
+  }
+
+  .row__0 td {
+    padding-top: 28px !important;
+    color: #01e186;
+  }
+
+  .row__1 td {
+    color: #3e8fff;
+  }
+
+  .row__2 td {
+    color: #a46dff;
+  }
+
+  .last__column {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    left: 0px;
+  }
+
+  .button {
+    font-size: 11px;
+    padding: 8px 0px;
+    border-radius: 13.31px;
+  }
+
+  .button:active {
+    background: none;
+    background-color: white;
+    color: rgba(30, 86, 104, 1);
+  }
+
+  /* Colored Background balls */
+  .ball1 {
+    display: none;
+  }
+
+  .ball2 {
+    display: none;
+  }
+
+  .ball3 {
+    display: none;
+  }
+
+  .ball4 {
+    display: none;
+  }
+
+  .ball5 {
+    display: none;
+  }
+
+  .ball6 {
+    display: none;
   }
 }

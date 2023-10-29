@@ -92,11 +92,13 @@ export default function DepositBox(props) {
                   : "#7B7B7B",
               }}
             ></div>
-            {!unstakingBufferPeriod
-              ? active
-                ? "Live"
-                : "Inactive"
-              : "Inactive"}
+            <span className={styles.status__text}>
+              {!unstakingBufferPeriod
+                ? active
+                  ? "Live"
+                  : "Inactive"
+                : "Inactive"}
+            </span>
           </div>
           <span>{data.id}</span>
         </div>
