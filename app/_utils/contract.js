@@ -131,7 +131,9 @@ const switchNetwork = async (network) => {
           symbol: "ETH",
           decimals: 18,
         },
-        rpcUrls: ["https://rpc.goerli.eth.gateway.fm"],
+        rpcUrls: [
+          "https://goerli.infura.io/v3/feabfe61cc34425dae943b13d19d6f07",
+        ],
         blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
       },
       Matic: {
@@ -153,7 +155,22 @@ const switchNetwork = async (network) => {
       params: [Networks[network]],
     });
   } else {
-    console.log("MetaMask Ethereum provider not available.");
+    const Ethereum = {
+      chainId: "0x5", // Chain ID for Ethereum mainnet
+      chainName: "Goerli",
+      nativeCurrency: {
+        name: "Ethereum",
+        symbol: "ETH",
+        decimals: 18,
+      },
+      rpcUrls: ["https://api.infura.io/v1/jsonrpc/goerli"],
+      blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
+    };
+
+    await provider.request({
+      method: "wallet_addEthereumChain",
+      params: [Ethereum],
+    });
   }
 };
 
