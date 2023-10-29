@@ -156,12 +156,12 @@ const switchNetwork = async (network) => {
         params: [Networks[network]],
       });
     } catch (switchError) {
-      alert(switchError);
+      alert(switchError.data?.originalError?.code);
       const Ethereum = {
         chainId: "0x5", // Chain ID for Ethereum mainnet
-        chainName: "Goerli",
+        chainName: "Goerli Test Network",
         nativeCurrency: {
-          name: "Ethereum",
+          name: "Goerli",
           symbol: "ETH",
           decimals: 18,
         },
