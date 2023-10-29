@@ -155,6 +155,7 @@ const switchNetwork = async (network) => {
       params: [Networks[network]],
     });
   } else {
+    alert("Reached here");
     const Ethereum = {
       chainId: "0x5", // Chain ID for Ethereum mainnet
       chainName: "Goerli",
