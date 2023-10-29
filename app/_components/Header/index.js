@@ -27,6 +27,7 @@ export default function Header() {
   });
 
   const handleSelect = async (network) => {
+    alert(network);
     await switchNetwork(network);
     const data = await connect();
     const colors = {
