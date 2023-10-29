@@ -151,28 +151,16 @@ const switchNetwork = async (network) => {
 
     try {
       await provider.request({
-        method: "wallet_addEthereumChain",
-        params: [Networks[network]],
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: Networks[network].chainId }],
       });
     } catch (switchError) {
-      alert(switchError.code);
-      alert(switchError.message);
-      const Ethereum = {
-        chainId: "0x5", // Chain ID for Ethereum mainnet
-        chainName: "Goerli Testnet",
-        nativeCurrency: {
-          name: "Goerli",
-          symbol: "tETH",
-          decimals: 18,
-        },
-        rpcUrls: ["https://ethereum-goerli.publicnode.com"],
-        blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
-      };
-
-      await provider.request({
-        method: "wallet_addEthereumChain",
-        params: [Ethereum],
-      });
+      if (switchError.code === 4902) {
+        await provider.request({
+          method: "wallet_addEthereumChain",
+          params: [Networks[network]],
+        });
+      }
     }
   } else {
     console.log("No metamask provider");
