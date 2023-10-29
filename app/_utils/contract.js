@@ -90,7 +90,7 @@ const determineNetwork = async () => {
 
   var networkName;
 
-  if (network.name === "goerli") {
+  if (network.name === "mainnet") {
     networkName = "Ethereum";
   } else if (network.name === "matic-mumbai") {
     networkName = "Matic";
@@ -124,15 +124,15 @@ const switchNetwork = async (network) => {
         blockExplorerUrls: ["https://testnet.tuber.build/"],
       },
       Ethereum: {
-        chainId: "0x5", // Chain ID for Ethereum mainnet
-        chainName: "Goerli",
+        chainId: "0x1", // Chain ID for Ethereum mainnet
+        chainName: "Ethereum Main Network",
         nativeCurrency: {
           name: "Ethereum",
           symbol: "ETH",
           decimals: 18,
         },
         rpcUrls: [
-          "https://goerli.infura.io/v3/feabfe61cc34425dae943b13d19d6f07",
+          "https://mainnet.infura.io/v3/feabfe61cc34425dae943b13d19d6f07",
         ],
         blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
       },
@@ -316,26 +316,26 @@ const connect = async () => {
   const address = await getAddress();
   const network = await determineNetwork();
   if (network !== "Other") {
-    const contract = await getContract();
-    const tokenContract = await getTokenContract();
-    const tokens = await tokenContract.getTokensOfOwner(address);
+    // const contract = await getContract();
+    // const tokenContract = await getTokenContract();
+    // const tokens = await tokenContract.getTokensOfOwner(address);
 
-    // Converts the uint[] returned to a normal array of numbers
-    const numberArray = tokens.map((value) => Number(value));
+    // // Converts the uint[] returned to a normal array of numbers
+    // const numberArray = tokens.map((value) => Number(value));
 
     data.address = address;
     data.tokens = [];
-    for (var i = 0; i < numberArray.length; i++) {
-      const tokenMetaData = await contract.getMetadata(numberArray[i]);
-      var tokenRewards = await contract.checkRewards(numberArray[i]);
-      tokenRewards = ethers.formatUnits(tokenRewards, "ether");
-      tokenRewards = formatAmount(parseFloat(tokenRewards));
-      data.tokens[i] = processMetadata(tokenMetaData);
-      data.tokens[i]["id"] = `${network[0]}-${numberArray[i]}`;
-      data.tokens[i]["tokenId"] = numberArray[i];
-      data.tokens[i]["reward"] = tokenRewards;
-    }
-    console.log(data.tokens);
+    // for (var i = 0; i < numberArray.length; i++) {
+    //   const tokenMetaData = await contract.getMetadata(numberArray[i]);
+    //   var tokenRewards = await contract.checkRewards(numberArray[i]);
+    //   tokenRewards = ethers.formatUnits(tokenRewards, "ether");
+    //   tokenRewards = formatAmount(parseFloat(tokenRewards));
+    //   data.tokens[i] = processMetadata(tokenMetaData);
+    //   data.tokens[i]["id"] = `${network[0]}-${numberArray[i]}`;
+    //   data.tokens[i]["tokenId"] = numberArray[i];
+    //   data.tokens[i]["reward"] = tokenRewards;
+    // }
+    // console.log(data.tokens);
     data.chain = network;
 
     return data;
