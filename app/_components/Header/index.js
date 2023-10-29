@@ -77,11 +77,12 @@ export default function Header() {
                 </div>
                 {optionsOpen && (
                   <animated.div className={styles.networks} style={popUpEffect}>
-                    {networks.map((network) => {
+                    {networks.map((network, id) => {
                       if (network !== chain) {
                         return (
                           <div
                             className={styles.network__outer__circle}
+                            key={id}
                             style={{
                               border: `1.5px solid ${colors[network]}`,
                             }}
