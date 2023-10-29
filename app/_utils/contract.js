@@ -131,7 +131,9 @@ const switchNetwork = async (network) => {
           symbol: "ETH",
           decimals: 18,
         },
-        rpcUrls: ["https://ethereum-goerli.publicnode.com"],
+        rpcUrls: [
+          "https://goerli.infura.io/v3/feabfe61cc34425dae943b13d19d6f07",
+        ],
         blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
       },
       Matic: {
@@ -153,13 +155,13 @@ const switchNetwork = async (network) => {
         params: [Networks[network]],
       });
     } catch (switchError) {
-      // alert(switchError.data);
+      alert("Alternative");
       const Ethereum = {
         chainId: "0x5", // Chain ID for Ethereum mainnet
-        chainName: "Goerli Test Network",
+        chainName: "Goerli Testnet",
         nativeCurrency: {
           name: "Goerli",
-          symbol: "ETH",
+          symbol: "tETH",
           decimals: 18,
         },
         rpcUrls: ["https://ethereum-goerli.publicnode.com"],
