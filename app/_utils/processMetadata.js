@@ -1,6 +1,11 @@
 import { ethers } from "ethers";
 import formatAmount from "./formatAmount";
 
+/**
+ *
+ * @param {*} dataString The string returned from the getMetadata contract function
+ * @returns an object with the NFTS metadata
+ */
 function processMetadata(dataString) {
   try {
     const data = JSON.parse(dataString);

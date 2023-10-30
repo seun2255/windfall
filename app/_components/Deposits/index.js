@@ -12,6 +12,7 @@ export default function Deposits() {
   const { chain, color } = useSelector((state) => state.app);
   const { user } = useSelector((state) => state.user);
 
+  // Displays only if the user is connected, is on a correct network and has deposit NFTS
   if (chain != "other" && user.address && user.deposits.length !== 0) {
     return (
       <div className={styles.main}>

@@ -1,3 +1,4 @@
+// Calculates the percentage of the total staked
 function calculatePercentage(amount, totalAmount) {
   const totalStaked = parseFloat(totalAmount);
   const percentage = (parseFloat(amount) / totalAmount) * 100;

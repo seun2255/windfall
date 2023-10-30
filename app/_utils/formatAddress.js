@@ -1,3 +1,4 @@
+// Formats the users wallet address to the format in the header connect button
 function formatEthereumAddress(address) {
   // Check if the address is a valid Ethereum address
   if (!/^(0x)?[0-9a-fA-F]{40}$/.test(address)) {

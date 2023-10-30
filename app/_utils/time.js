@@ -1,3 +1,4 @@
+// Determines the times until the next draw (3pm PST)
 function getTimeTillNextDraw() {
   // Create a date object for the current date
   const now = new Date();
@@ -20,13 +21,14 @@ function getTimeTillNextDraw() {
   return futureTime;
 }
 
+// Checks if a stake is valid (i.e it has passed its buffer period)
 function stakeValid(timestampString, unstakeTimestamp) {
-  // Convert the string timestamp to a number (integer)
+  // Converts the string timestamp to a number (integer)
   const timestamp = parseInt(timestampString, 10);
 
   if (isNaN(timestamp)) {
     console.error("Invalid timestamp string");
-    return false; // Return false in case of an invalid timestamp
+    return false; // Returns false in case of an invalid timestamp
   }
 
   const now = Math.floor(Date.now() / 1000); // Current Unix timestamp in seconds
@@ -40,21 +42,21 @@ function stakeValid(timestampString, unstakeTimestamp) {
 }
 
 function calculateTimeDifferenceFromTimestamp(timestampString) {
-  // Convert the string timestamp to a number (integer)
+  // Converts the string timestamp to a number (integer)
   const timestamp = parseInt(timestampString, 10);
 
-  // Calculate the current Unix timestamp in milliseconds
+  // Calculates the current Unix timestamp in milliseconds
   const currentTimestamp = new Date().getTime();
 
-  // Calculate the difference between the current time and the provided timestamp
-  const timeDifference = currentTimestamp - timestamp * 1000; // Convert timestamp to milliseconds
+  const timeDifference = currentTimestamp - timestamp * 1000; // Converts timestamp to milliseconds
 
-  // Calculate the time remaining until 2 minutes have passed
+  // Calculates the time remaining until 2 minutes have passed
   const timeRemaining = Math.max(0, 2 * 60 * 1000 - timeDifference);
 
   return timeRemaining; // Time remaining in milliseconds
 }
 
+// Calculates how long the unstake buffer period remains
 function calculateUnstakePeriod(timestamp) {
   // Convert the timestamp string to a number (integer)
   const timestampNumber = parseInt(timestamp, 10);

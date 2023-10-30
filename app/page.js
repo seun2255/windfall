@@ -22,7 +22,7 @@ export default function Home() {
   const [hydrate, setHydrate] = useState(false);
   const dispatch = useDispatch();
 
-  // Rettrives all the frontend data fro the blockcahin before rendering
+  // Retrieves all the frontend data from the blockcahin before rendering the app
   useEffect(() => {
     const getData = async () => {
       const details = await getDrawDetails();
@@ -36,6 +36,7 @@ export default function Home() {
     getData();
   });
 
+  // The app is rendered only after the frontend data has been fetched from the backend
   if (hydrate) {
     return (
       <main className={styles.main}>

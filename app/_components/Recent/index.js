@@ -10,6 +10,7 @@ export default function RecentWindfalls() {
   const dispatch = useDispatch();
   const { recentWindfalls } = useSelector((state) => state.app);
 
+  // App color theme for the different networks
   const colors = { Canto: "#01e186", Ethereum: "#3e8fff", Matic: "#a46dff" };
 
   return (

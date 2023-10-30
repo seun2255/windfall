@@ -22,23 +22,31 @@ export default function ConnectWalletModal(props) {
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
 
+  // react spring animation
   const popUpEffect = useSpring({
     opacity: open ? 1 : 0,
     config: { duration: 300 },
   });
 
+  // Initiates the pop up animation
   useEffect(() => {
     setOpen(true);
   }, []);
 
+  // Toggles the first checkbox
   const handleCheckBox1 = () => {
     setChecked1(!checked1);
   };
 
+  // Toggles the second checkbox
   const handleCheckBox2 = () => {
     setChecked2(!checked2);
   };
 
+  /**
+   * @notice Checks if the checkboxes are ticked and then Connects the users wallet to the app
+   * @notice adds an event listener that listens for when the user manually changes their network, upon network change the app updates
+   */
   const handleConnect = async () => {
     // If a second checkbox is added change this to if(checked1 && checked2)
     if (checked1) {
@@ -98,6 +106,7 @@ export default function ConnectWalletModal(props) {
         }}
       >
         <h3 className={styles.title}>Connect your wallet</h3>
+
         {/* First Term */}
         <div className={styles.terms}>
           <div
@@ -116,6 +125,7 @@ export default function ConnectWalletModal(props) {
             and <span>Privacy Policy</span>.
           </span>
         </div>
+
         {/* Second term (remove the style below on line 121 to show this) */}
         <div className={styles.terms} style={{ display: "none" }}>
           <div

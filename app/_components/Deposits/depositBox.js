@@ -32,6 +32,7 @@ export default function DepositBox(props) {
   const [unstakingBufferPeriod, setUnstakingBufferPeriod] = useState(true);
   const [percentage, setPercentage] = useState("");
 
+  //Array of variables that make the box rerender with the latest state upon changing
   const dependencyArray = [
     user.deposits,
     drawDetails.Canto.totalStaked,
@@ -39,6 +40,7 @@ export default function DepositBox(props) {
     drawDetails.Ethereum.totalStaked,
   ];
 
+  // Updates the box with the latest state once an action takes place e.g startunstake, claim rewards e.t.c
   useEffect(() => {
     const percent = calculatePercentage(
       data.stakingAmount,

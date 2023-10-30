@@ -16,21 +16,29 @@ export default function NetworkModal(props) {
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // react spring animation
   const popUpEffect = useSpring({
     opacity: open ? 1 : 0,
     config: { duration: 300 },
   });
 
+  // Initiates the pop up animation
   useEffect(() => {
     setOpen(true);
   }, []);
 
+  // List of networks the user can switch to and their icons
   const options = [
     { text: "Canto", icon: icons.canto },
     { text: "Ethereum", icon: icons.ethereum },
     { text: "Matic", icon: icons.matic },
   ];
 
+  /**
+   *
+   * @param {*} network the network the user wants to switch to
+   * @notice fetches the users NFTS and changes the App color theme
+   */
   const handleSelect = async (network) => {
     await switchNetwork(network);
     const data = await connect();
@@ -69,14 +77,6 @@ export default function NetworkModal(props) {
           <button
             className={styles.change__button}
             onClick={() => setMenuOpen(true)}
-            // style={
-            //   menuOpen
-            //     ? {
-            //         background:
-            //           "linear-gradient(180deg, rgba(58, 137, 163, 0.00) 0%, rgba(10, 48, 61, 0.42) 100%)",
-            //       }
-            //     : null
-            // }
           >
             <span style={{ color: "#ff3e3e" }}>CHANGE NETWORK</span>
             {menuOpen &&

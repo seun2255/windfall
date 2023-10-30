@@ -18,14 +18,21 @@ export default function Header() {
   const [optionsOpen, setOptionsOpen] = useState(false);
   const dispatch = useDispatch();
 
+  // Object for associating each network with a app theme color
   const colors = { Canto: "#01e186", Ethereum: "#3e8fff", Matic: "#a46dff" };
   const networks = ["Canto", "Ethereum", "Matic"];
 
+  // React spring animation
   const popUpEffect = useSpring({
     opacity: optionsOpen ? 1 : 0,
     config: { duration: 300 },
   });
 
+  /**
+   *
+   * @param {*} network the network you wish to switch to e.g Canto
+   * @notice switches the user to the selected network and sets the app theme color
+   */
   const handleSelect = async (network) => {
     await switchNetwork(network);
     const data = await connect();
@@ -51,6 +58,8 @@ export default function Header() {
           </span>
           NDFALL
         </div>
+
+        {/* Checks if the user is on a correct network and displays the wrong network button if theyre not */}
         {chain !== "Other" ? (
           <button
             className={styles.wallet__connect__button}
@@ -82,6 +91,8 @@ export default function Header() {
                     fill
                   />
                 </div>
+
+                {/* Displays the available networks you may switch between */}
                 {optionsOpen && (
                   <animated.div className={styles.networks} style={popUpEffect}>
                     {networks.map((network, id) => {
@@ -121,6 +132,7 @@ export default function Header() {
             {connected ? formatEthereumAddress(user.address) : "Connect"}
           </button>
         ) : (
+          // Button for when a user is connected to the wrong network
           <button
             className={styles.wrong__netowrk}
             onClick={() => dispatch(setNetworkModal(true))}

@@ -24,20 +24,24 @@ export default function DepositModal(props) {
   const [belowMinimum, setBelowMinimum] = useState(false);
   const [depositing, setDepositing] = useState(false);
 
+  // react spring animation
   const popUpEffect = useSpring({
     opacity: open ? 1 : 0,
     config: { duration: 300 },
   });
 
+  // Initiates the pop up animation
   useEffect(() => {
     setOpen(true);
   }, []);
 
+  // Sets the input amount to the users total balance minus enough for 2 gas fees
   const handleMax = async () => {
     const maxAmount = await getBalanceMinusGas();
     setAmount(maxAmount);
   };
 
+  // Calls the stake function, if the input amount is below the minimum amount it triggers the below minimum warning
   const handleDeposit = () => {
     if (amount >= minimumAmounts[chain]) {
       var depositAmount = amount.toString();
@@ -57,6 +61,7 @@ export default function DepositModal(props) {
     }
   };
 
+  // The minimum amounts for each network, modify to set the minimum amount
   const minimumAmounts = {
     Canto: 0.1,
     Ethereum: 0.001,

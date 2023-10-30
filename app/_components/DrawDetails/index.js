@@ -20,16 +20,17 @@ export default function DrawDetails() {
   const dispatch = useDispatch();
   const timeTillNextDraw = getTimeTillNextDraw();
 
+  //Array of variables that make the app rerender with the latest state upon changing
   const dependencyArray = [
     drawDetails.Canto.totalStaked,
     drawDetails.Matic.totalStaked,
     drawDetails.Ethereum.totalStaked,
   ];
 
-  useEffect(() => {
-    console.log("This Ran");
-  }, dependencyArray);
+  // UseEffect that rerenders the app anytime one of the dependecies above are changed
+  useEffect(() => {}, dependencyArray);
 
+  // opens the deposit modal or network modal if the user is on a wrong network
   const handleDepositClick = () => {
     if (connected) {
       chain === "Other"

@@ -1,3 +1,5 @@
+//Formats an amount to have 2 d.p for numbers > 1, 3 d.p for numbers < 1 but > 0.001 and returns 0 for amounts
+// less than 0.001
 const formatAmount = (total) => {
   let formattedTotal;
 
