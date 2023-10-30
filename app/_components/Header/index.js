@@ -60,15 +60,22 @@ export default function Header() {
                 : dispatch(setWalletModal(true))
             }
           >
+            {/* After fixing canto icon delete lines 69, 75 - 77, 95 and 101 - 105 */}
             {connected && (
               <div
                 className={styles.outer__circle}
                 style={{
                   border: `1.5px solid ${colors[chain]}`,
+                  padding: chain === "Canto" ? "9px" : "8px",
                 }}
                 onClick={() => setOptionsOpen(!optionsOpen)}
               >
-                <div className={styles.icon}>
+                <div
+                  className={styles.icon}
+                  style={
+                    chain === "Canto" ? { width: "24px", height: "24px" } : null
+                  }
+                >
                   <Image
                     src={icons[chain.toLowerCase()]}
                     alt="token icon"
@@ -85,10 +92,18 @@ export default function Header() {
                             key={id}
                             style={{
                               border: `1.5px solid ${colors[network]}`,
+                              padding: chain === "Canto" ? "9px" : "8px",
                             }}
                             onClick={() => handleSelect(network)}
                           >
-                            <div className={styles.icon}>
+                            <div
+                              className={styles.icon}
+                              style={
+                                network === "Canto"
+                                  ? { width: "24px", height: "24px" }
+                                  : null
+                              }
+                            >
                               <Image
                                 src={icons[network.toLowerCase()]}
                                 alt="token icon"

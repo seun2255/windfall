@@ -46,9 +46,11 @@
   }
 
   .deposits {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
+    box-sizing: border-box;
+    padding: 0px 28px;
     gap: 25px;
     justify-content: center; /* Center items horizontally */
   }

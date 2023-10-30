@@ -76,7 +76,7 @@
 .networks {
   position: absolute;
   opacity: 0;
-  left: -105px;
+  left: -110px;
   top: 0px;
   display: flex;
   column-gap: 8px;
@@ -110,6 +110,7 @@
   .flower {
     width: 12.6px;
     height: 12.6px;
+    top: -10px;
   }
 
   .wallet__connect__button {

@@ -40,7 +40,6 @@ export default function DepositBox(props) {
   ];
 
   useEffect(() => {
-    console.log("This ran again");
     const percent = calculatePercentage(
       data.stakingAmount,
       drawDetails[chain].totalStaked
