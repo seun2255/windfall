@@ -21,12 +21,16 @@ function ClaimRewardButton(props) {
   // Claims the users rewards and reloads the deposit boxes with the new state from the blockchain
   const handleClaimRewards = async () => {
     setClaiming(true);
-    await claimRewards(data.tokenId);
-    const details = await connect();
-    setClaiming(false);
-    dispatch(
-      updateUser({ address: details.address, deposits: details.tokens })
-    );
+    const result = await claimRewards(data.tokenId);
+    if (result) {
+      const details = await connect();
+      setClaiming(false);
+      dispatch(
+        updateUser({ address: details.address, deposits: details.tokens })
+      );
+    } else {
+      setClaiming(false);
+    }
   };
 
   return (
@@ -102,10 +106,14 @@ function FinishUnstakingButton(props) {
   // Completes the unstake process and sets the state of the button to withdrawing
   const handleClick = async () => {
     setWithdrawing(true);
-    await unstake(token.tokenId);
-    const data = await connect();
-    setWithdrawing(false);
-    dispatch(updateUser({ address: data.address, deposits: data.tokens }));
+    const result = await unstake(token.tokenId);
+    if (result) {
+      const data = await connect();
+      setWithdrawing(false);
+      dispatch(updateUser({ address: data.address, deposits: data.tokens }));
+    } else {
+      setWithdrawing(false);
+    }
   };
 
   return (
@@ -120,7 +128,7 @@ function FinishUnstakingButton(props) {
     >
       {withdrawing ? (
         <span>
-          Withdrawing <span className={styles.blink}>...</span>
+          Withdrawing<span className={styles.blink}>...</span>
         </span>
       ) : (
         "Finish Unstaking"
@@ -139,15 +147,19 @@ function UnstakeButton(props) {
   const handleUnstake = async () => {
     if (data.unstakeTimestamp == "0") {
       setUnstaking(true);
-      await startUnStake(data.tokenId);
-      const drawDetails = await getDrawDetails();
-      dispatch(setDrawDetails(drawDetails));
-      setUnstakingBufferPeriod(true);
-      showBuffer(true);
-      const details = await connect();
-      dispatch(
-        updateUser({ address: details.address, deposits: details.tokens })
-      );
+      const result = await startUnStake(data.tokenId);
+      if (result) {
+        const drawDetails = await getDrawDetails();
+        dispatch(setDrawDetails(drawDetails));
+        setUnstakingBufferPeriod(true);
+        showBuffer(true);
+        const details = await connect();
+        dispatch(
+          updateUser({ address: details.address, deposits: details.tokens })
+        );
+      } else {
+        setUnstaking(false);
+      }
     }
   };
 
@@ -161,7 +173,13 @@ function UnstakeButton(props) {
           : null
       }
     >
-      {unstaking ? "Unstaking" : "Unstake"}
+      {unstaking ? (
+        <span>
+          Unstaking<span className={styles.blink}>...</span>
+        </span>
+      ) : (
+        "Unstake"
+      )}
     </button>
   );
 }

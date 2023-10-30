@@ -384,10 +384,15 @@ const depositTokens = async (amount) => {
 const startUnStake = async (_tokenId) => {
   const contract = await getContract();
 
-  const tx = await contract.startUnstake(_tokenId);
+  try {
+    const tx = await contract.startUnstake(_tokenId);
 
-  // Wait for the transaction to be mined
-  await tx.wait();
+    // Wait for the transaction to be mined
+    await tx.wait();
+    return true;
+  } catch {
+    return false;
+  }
 };
 
 /**
@@ -399,18 +404,22 @@ const unstake = async (_tokenId) => {
   const tokenContract = await getTokenContract();
   const contract = await getContract();
 
-  const approvalTx = await tokenContract.approve(
-    contracts[network].stakingContract,
-    _tokenId
-  );
+  try {
+    const approvalTx = await tokenContract.approve(
+      contracts[network].stakingContract,
+      _tokenId
+    );
 
-  await approvalTx.wait();
+    await approvalTx.wait();
 
-  const unstakeTx = await contract.unstake(_tokenId);
+    const unstakeTx = await contract.unstake(_tokenId);
 
-  await unstakeTx.wait();
+    await unstakeTx.wait();
 
-  return true;
+    return true;
+  } catch {
+    return false;
+  }
 };
 
 /**
@@ -420,9 +429,15 @@ const unstake = async (_tokenId) => {
 const claimRewards = async (_tokenId) => {
   const contract = await getContract();
 
-  const claimTx = await contract.claimRewards(_tokenId);
+  try {
+    const claimTx = await contract.claimRewards(_tokenId);
 
-  await claimTx.wait();
+    await claimTx.wait();
+
+    return true;
+  } catch {
+    return false;
+  }
 };
 
 export {

@@ -94,6 +94,22 @@
 }
 
 /* Desktop Sizes */
+
+@media (min-width: 1280px) {
+  .container {
+    justify-content: flex-start;
+    column-gap: 250px;
+  }
+
+  .links {
+    width: -moz-fit-content;
+    width: fit-content;
+    justify-content: flex-start;
+    column-gap: 147px;
+    padding-right: 0px;
+  }
+}
+
 @media (max-width: 1068px) {
   .links {
     padding-right: 50px;

@@ -54,7 +54,7 @@
 .amount > span {
   font-size: 15px;
   color: #33de2f;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .status__details {
@@ -116,7 +116,7 @@
   .main {
     width: 100%;
     padding: 28px 20px;
-    row-gap: 36px;
+    row-gap: 31px;
   }
 
   .amount__details {
@@ -139,14 +139,15 @@
   }
 
   .amount > span {
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 
   .status {
     border-radius: 4px;
     font-size: 12px;
     font-weight: 500;
-    width: 59.735px;
+    width: -moz-fit-content;
+    width: fit-content;
     justify-content: center;
     column-gap: 7px;
   }
@@ -157,6 +158,11 @@
     height: 6px;
     border-radius: 6px;
     background-color: #33de2f;
+  }
+
+  .status__text {
+    position: relative;
+    bottom: 0.5px;
   }
 
   .status__details > span {

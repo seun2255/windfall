@@ -82,7 +82,7 @@ export default function Header() {
                 <div
                   className={styles.icon}
                   style={
-                    chain === "Canto" ? { width: "24px", height: "24px" } : null
+                    chain === "Canto" ? { width: "22px", height: "22px" } : null
                   }
                 >
                   <Image
@@ -94,7 +94,13 @@ export default function Header() {
 
                 {/* Displays the available networks you may switch between */}
                 {optionsOpen && (
-                  <animated.div className={styles.networks} style={popUpEffect}>
+                  <animated.div
+                    className={styles.networks}
+                    style={{
+                      ...popUpEffect,
+                      left: chain === "Canto" ? "-124px" : "-110px",
+                    }}
+                  >
                     {networks.map((network, id) => {
                       if (network !== chain) {
                         return (
@@ -103,7 +109,7 @@ export default function Header() {
                             key={id}
                             style={{
                               border: `1.5px solid ${colors[network]}`,
-                              padding: chain === "Canto" ? "9px" : "8px",
+                              padding: chain === "Canto" ? "10px" : "8px",
                             }}
                             onClick={() => handleSelect(network)}
                           >
@@ -111,7 +117,7 @@ export default function Header() {
                               className={styles.icon}
                               style={
                                 network === "Canto"
-                                  ? { width: "24px", height: "24px" }
+                                  ? { width: "22px", height: "22px" }
                                   : null
                               }
                             >

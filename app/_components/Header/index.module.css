@@ -129,6 +129,10 @@
     align-items: center;
   }
 
+  .outer__circle {
+    left: -52px;
+  }
+
   .networks {
     z-index: 20;
     left: 0px;
