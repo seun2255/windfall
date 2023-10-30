@@ -368,13 +368,18 @@ const getBalanceMinusGas = async () => {
 const depositTokens = async (amount) => {
   const contract = await getContract();
 
-  const etherAmount = ethers.parseEther(amount);
+  try {
+    const etherAmount = ethers.parseEther(amount);
 
-  // Call the function and pass Ether
-  const tx = await contract.stake({ value: etherAmount });
+    // Call the function and pass Ether
+    const tx = await contract.stake({ value: etherAmount });
 
-  // Wait for the transaction to be mined
-  await tx.wait();
+    // Wait for the transaction to be mined
+    await tx.wait();
+    return true;
+  } catch {
+    return false;
+  }
 };
 
 /**

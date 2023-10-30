@@ -42,17 +42,20 @@ export default function DepositModal(props) {
   };
 
   // Calls the stake function, if the input amount is below the minimum amount it triggers the below minimum warning
-  const handleDeposit = () => {
+  const handleDeposit = async () => {
     if (amount >= minimumAmounts[chain]) {
       var depositAmount = amount.toString();
       setDepositing(true);
 
-      depositTokens(depositAmount).then(async () => {
+      const result = await depositTokens(depositAmount);
+      if (result) {
         const data = await connect();
         dispatch(updateUser({ address: data.address, deposits: data.tokens }));
         setDepositing(false);
         dispatch(setDepositModal(false));
-      });
+      } else {
+        setDepositing(false);
+      }
     } else {
       setBelowMinimum(true);
       setTimeout(() => {
