@@ -139,9 +139,9 @@
 
   .networks {
     z-index: 20;
-    left: 0px !important;
+    left: -1px !important;
     top: 47px;
     display: flex;
-    column-gap: 8px;
+    column-gap: 3.5px;
   }
 }
