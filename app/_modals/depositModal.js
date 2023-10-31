@@ -9,6 +9,7 @@ import { animated, useSpring } from "@react-spring/web";
 import { setDepositModal } from "../_redux/modals";
 import { updateUser } from "../_redux/user";
 import { getBalanceMinusGas, depositTokens, connect } from "../_utils/contract";
+import { useMediaQuery } from "react-responsive";
 
 export default function DepositModal(props) {
   const { chain } = useSelector((state) => state.app);
@@ -17,6 +18,10 @@ export default function DepositModal(props) {
   const [amount, setAmount] = useState(0);
   const [belowMinimum, setBelowMinimum] = useState(false);
   const [depositing, setDepositing] = useState(false);
+
+  const isMobile = useMediaQuery({
+    query: "(max-width: 662px)",
+  });
 
   // react spring animation
   const popUpEffect = useSpring({
@@ -84,7 +89,16 @@ export default function DepositModal(props) {
         <h2 className={styles.title}>Deposit Tokens</h2>
         <div className={styles.gradient__border}>
           <div className={styles.input__box}>
-            <div className={styles.token__icon}>
+            <div
+              className={styles.token__icon}
+              style={
+                chain === "Canto"
+                  ? isMobile
+                    ? { width: "22xp", height: "22px" }
+                    : { width: "32xp", height: "32px" }
+                  : null
+              }
+            >
               <Image
                 src={icons[`${chain.toLowerCase()}Mobile`]}
                 alt="token icon"

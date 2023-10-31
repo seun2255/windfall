@@ -1,6 +1,6 @@
 import timer from "./timer.svg";
 import canto from "./canto.png";
-import cantoMobile from "./canto.svg";
+import cantoMobile from "./canto.png";
 import metamask from "./metamask.svg";
 import matic from "./matic.png";
 import maticMobile from "./matic.svg";
