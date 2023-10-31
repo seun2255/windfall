@@ -87,7 +87,7 @@
 .gradient__border:active {
   padding: 0px;
   background: none;
-  border: 1px solid red;
+  border: 1px solid #01e186;
 }
 
 .connect__button {
