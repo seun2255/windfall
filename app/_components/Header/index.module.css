@@ -104,7 +104,7 @@
   .main {
     padding: 42px 29px;
     padding-top: 42px;
-    padding-bottom: 42px;
+    padding-bottom: 30px;
   }
 
   .logo {
@@ -140,7 +140,7 @@
   .networks {
     z-index: 20;
     left: 0px !important;
-    top: 54px;
+    top: 47px;
     display: flex;
     column-gap: 8px;
   }
