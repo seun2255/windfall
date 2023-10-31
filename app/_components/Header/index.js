@@ -88,13 +88,7 @@ export default function Header() {
 
                 {/* Displays the available networks you may switch between */}
                 {optionsOpen && (
-                  <animated.div
-                    className={styles.networks}
-                    style={{
-                      ...popUpEffect,
-                      left: chain === "Canto" ? "-124px" : "-110px",
-                    }}
-                  >
+                  <animated.div className={styles.networks} style={popUpEffect}>
                     {networks.map((network, id) => {
                       if (network !== chain) {
                         return (
