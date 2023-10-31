@@ -94,8 +94,8 @@ export default function DepositModal(props) {
               style={
                 chain === "Canto"
                   ? isMobile
-                    ? { width: "16xp", height: "24px" }
-                    : { width: "32xp", height: "32px" }
+                    ? { width: "16xp", height: "21px" }
+                    : { width: "32xp", height: "31px" }
                   : null
               }
             >
