@@ -27,7 +27,6 @@ export default function Home() {
     const getData = async () => {
       const details = await getDrawDetails();
       const recentWindfalls = await getRecentWindfalls();
-      console.log(details);
       dispatch(setDrawDetails(details));
       dispatch(setRecentWindfalls(recentWindfalls));
       setHydrate(true);

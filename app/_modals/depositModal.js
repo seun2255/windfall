@@ -7,14 +7,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { animated, useSpring } from "@react-spring/web";
 import { setDepositModal } from "../_redux/modals";
-import { setDrawDetails } from "../_redux/app";
 import { updateUser } from "../_redux/user";
-import {
-  getBalanceMinusGas,
-  depositTokens,
-  connect,
-  getDrawDetails,
-} from "../_utils/contract";
+import { getBalanceMinusGas, depositTokens, connect } from "../_utils/contract";
 
 export default function DepositModal(props) {
   const { chain } = useSelector((state) => state.app);
@@ -91,7 +85,11 @@ export default function DepositModal(props) {
         <div className={styles.gradient__border}>
           <div className={styles.input__box}>
             <div className={styles.token__icon}>
-              <Image src={icons[chain.toLowerCase()]} alt="token icon" fill />
+              <Image
+                src={icons[`${chain.toLowerCase()}Mobile`]}
+                alt="token icon"
+                fill
+              />
             </div>
             <input
               className={styles.input}

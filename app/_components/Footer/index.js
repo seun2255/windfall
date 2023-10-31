@@ -6,9 +6,7 @@ import icons from "@/app/_assets/icons/icons";
 export default function Footer() {
   // Scrolls the user back to the top of the page
   const handleLogoClick = () => {
-    console.log("Scrolling");
     window.scrollTo({ top: 0, behavior: "smooth" });
-    console.log("Scrolled");
   };
 
   return (

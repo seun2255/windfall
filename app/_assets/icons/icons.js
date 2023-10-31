@@ -1,9 +1,11 @@
 import timer from "./timer.svg";
 import canto from "./canto.png";
-import cantoPNG from "./canto.png";
+import cantoMobile from "./canto.svg";
 import metamask from "./metamask.svg";
-import matic from "./matic.svg";
+import matic from "./matic.png";
+import maticMobile from "./matic.svg";
 import ethereum from "./ethereum.svg";
+import ethereumMobile from "./ethereum.svg";
 import twitter from "./twitter.svg";
 import discord from "./discord.svg";
 
@@ -11,9 +13,11 @@ import discord from "./discord.svg";
 const icons = {
   timer,
   canto,
-  cantoPNG,
   matic,
   ethereum,
+  cantoMobile,
+  maticMobile,
+  ethereumMobile,
   metamask,
   twitter,
   discord,

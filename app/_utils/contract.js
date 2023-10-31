@@ -324,7 +324,6 @@ const connect = async () => {
       data.tokens[i]["tokenId"] = numberArray[i];
       data.tokens[i]["reward"] = tokenRewards;
     }
-    console.log(data.tokens);
     data.chain = network;
 
     return data;
