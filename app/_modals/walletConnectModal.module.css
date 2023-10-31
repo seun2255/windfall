@@ -84,6 +84,12 @@
   border-radius: 10px;
 }
 
+.gradient__border:active {
+  padding: 0px;
+  background: none;
+  border: 1px solid red;
+}
+
 .connect__button {
   width: 100%;
   padding: 12px 22px;
