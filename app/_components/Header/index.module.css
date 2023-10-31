@@ -2,6 +2,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 53px 7%;
+  padding-top: 57px;
 }
 
 .nav {
@@ -101,6 +102,7 @@
 @media screen and (max-width: 480px) {
   .main {
     padding: 42px 29px;
+    padding-top: 42px;
   }
 
   .logo {

@@ -97,7 +97,7 @@
 
 @media (min-width: 1280px) {
   .container {
-    justify-content: flex-start;
+    justify-content: center;
     column-gap: 250px;
   }
 
