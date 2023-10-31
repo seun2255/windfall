@@ -344,10 +344,10 @@
   .box {
     width: 100%;
     display: inline-flex;
-    padding: 34px 6.295px 26px 9px;
+    padding: 34px 6.295px 20px 9px;
     flex-direction: column;
     align-items: center;
-    gap: 35px;
+    gap: 0px;
   }
 
   .top {
@@ -356,7 +356,7 @@
     width: 247px;
     align-items: center;
     gap: 7.077px;
-    margin-bottom: 0px;
+    margin-bottom: 35px;
   }
 
   .top > span {
@@ -382,7 +382,7 @@
     border-collapse: collapse;
     font-family: "Satoshi";
     font-weight: 300 !important;
-    margin-bottom: 0px;
+    margin-bottom: 23px;
   }
 
   .table__head {
