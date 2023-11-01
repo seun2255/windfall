@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 44px;
-  padding: 0px 10px;
+  padding: 0px;
   box-sizing: border-box;
   column-gap: 25px;
 }
@@ -269,6 +269,9 @@
 }
 
 @media (max-width: 935px) {
+  .top {
+    padding: 0px 10px;
+  }
   .top > span {
     font-size: 29px;
   }
@@ -319,17 +322,21 @@
 }
 
 @media (max-width: 845px) {
+  .top {
+    padding: 0px;
+  }
+
   .top > span {
-    font-size: 24px;
+    font-size: 25px;
   }
 
   .timer__icon {
-    width: 24px;
-    height: 24px;
+    width: 25px;
+    height: 25px;
   }
 
   .timer {
-    font-size: 23px;
+    font-size: 24px;
   }
 
   .display {
@@ -354,7 +361,23 @@
 
 @media (max-width: 814px) {
   .top > span {
+    font-size: 23px;
+  }
+
+  .timer__icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .timer {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 798px) {
+  .top > span {
     font-size: 22px;
+    letter-spacing: 2.5px;
   }
 
   .timer__icon {
@@ -367,41 +390,25 @@
   }
 }
 
-@media (max-width: 798px) {
-  .top > span {
-    font-size: 20px;
-    letter-spacing: 2.5px;
-  }
-
-  .timer__icon {
-    width: 19px;
-    height: 19px;
-  }
-
-  .timer {
-    font-size: 20px;
-  }
-}
-
 @media (max-width: 776px) {
   .top > span {
-    font-size: 19px;
-    letter-spacing: 2.5px;
+    font-size: 21px;
+    letter-spacing: 1.5px;
   }
 
   .timer__icon {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   .timer {
-    font-size: 19px;
+    font-size: 21px;
   }
 }
 
 @media (max-width: 776px) {
   .top {
-    padding: 0px 13px;
+    padding: 0px 11px;
   }
 }
 
@@ -413,13 +420,14 @@
 
 @media (max-width: 746px) {
   .top {
-    padding: 0px 4px;
+    padding: 0px 2px;
   }
 }
 
 @media (max-width: 728px) {
   .top {
     padding: 0px;
+    column-gap: 10px;
   }
 
   .timer {
@@ -427,17 +435,17 @@
   }
 
   .top > span {
-    font-size: 17px;
+    font-size: 19px;
     letter-spacing: 3px;
   }
 
   .timer__icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
 
   .timer {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .display {
