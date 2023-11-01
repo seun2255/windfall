@@ -144,7 +144,7 @@ const switchNetwork = async (network) => {
           symbol: "MATIC",
           decimals: 18,
         },
-        rpcUrls: ["https://rpc-mumbai.maticvigil.com/"], // Matic mainnet RPC URL
+        rpcUrls: ["https://polygon-testnet.public.blastapi.io"], // Matic mainnet RPC URL
         blockExplorerUrls: ["https://mumbai.polygonscan.com/"], // Matic block explorer URL
       },
     };
