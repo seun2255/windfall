@@ -34,7 +34,7 @@ const contracts = {
   Matic: {
     stakingContract: process.env.NEXT_PUBLIC_MATIC_CONTRACT_ADDRESS,
     tokenContract: process.env.NEXT_PUBLIC_MATIC_TOKEN_CONTRACT_ADDRESS,
-    rpcURL: "https://rpc-mumbai.maticvigil.com/",
+    rpcURL: "https://polygon-testnet.public.blastapi.io",
   },
   Ethereum: {
     stakingContract: process.env.NEXT_PUBLIC_ETHEREUM_CONTRACT_ADDRESS,
@@ -213,8 +213,11 @@ const getFrontendData = async (network) => {
  */
 const getDrawDetails = async () => {
   const cantoData = await getFrontendData("Canto");
+  console.log("Gottern Canto");
   const ethereumData = await getFrontendData("Ethereum");
+  console.log("Gotten Ethereum");
   const maticData = await getFrontendData("Matic");
+  console.log("Gotten Matic");
   const data = { Canto: cantoData, Ethereum: ethereumData, Matic: maticData };
 
   const networkList = ["Canto", "Ethereum", "Matic"];

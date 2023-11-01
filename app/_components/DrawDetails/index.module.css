@@ -34,6 +34,9 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 44px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  column-gap: 25px;
 }
 
 .top > span {
@@ -44,6 +47,7 @@
   font-weight: 500;
   font-family: "Satoshi";
   color: #ffffff;
+  letter-spacing: 1px;
 }
 
 .timer__icon {
@@ -55,7 +59,7 @@
 .timer {
   box-sizing: border-box;
   display: flex;
-  max-width: 280px;
+  max-width: 320px;
   justify-content: center;
   align-items: center;
   padding: 0.5em 3.5em;
@@ -229,7 +233,7 @@
   width: 94px;
   height: 94px;
   top: 55%;
-  right: -221px;
+  right: -222px;
 }
 
 .ball6 {
@@ -241,9 +245,82 @@
 }
 
 /* Responsive text size */
-@media (max-width: 888px) {
+@media (max-width: 963px) {
+  .top {
+    padding: 0px 15px;
+  }
+
   .top > span {
-    font-size: 26px;
+    font-size: 30px;
+  }
+
+  .timer__icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .timer {
+    font-size: 30px;
+  }
+
+  .display {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 935px) {
+  .top > span {
+    font-size: 29px;
+  }
+
+  .timer__icon {
+    width: 29px;
+    height: 29px;
+  }
+
+  .timer {
+    font-size: 29px;
+  }
+}
+
+@media (max-width: 925px) {
+  .top > span {
+    font-size: 27px;
+  }
+
+  .timer__icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .timer {
+    font-size: 27px;
+  }
+
+  .display {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 868px) {
+  .top > span {
+    font-size: 25px;
+    letter-spacing: 1.5px;
+  }
+
+  .timer__icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .timer {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 845px) {
+  .top > span {
+    font-size: 24px;
   }
 
   .timer__icon {
@@ -252,17 +329,64 @@
   }
 
   .timer {
-    font-size: 26px;
+    font-size: 23px;
   }
 
   .display {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 825px) {
+  .top > span {
+    font-size: 23px;
+  }
+
+  .timer__icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .timer {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 814px) {
+  .top > span {
+    font-size: 22px;
+  }
+
+  .timer__icon {
+    width: 21px;
+    height: 21px;
+  }
+
+  .timer {
     font-size: 22px;
   }
 }
 
-@media (max-width: 788px) {
+@media (max-width: 798px) {
   .top > span {
-    font-size: 21px;
+    font-size: 20px;
+    letter-spacing: 2.5px;
+  }
+
+  .timer__icon {
+    width: 19px;
+    height: 19px;
+  }
+
+  .timer {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 776px) {
+  .top > span {
+    font-size: 19px;
+    letter-spacing: 2.5px;
   }
 
   .timer__icon {
@@ -271,21 +395,40 @@
   }
 
   .timer {
-    font-size: 20px;
-  }
-
-  .display {
-    font-size: 18px;
+    font-size: 19px;
   }
 }
 
-@media (max-width: 669px) {
-  .main {
-    padding: 100px 20px;
+@media (max-width: 776px) {
+  .top {
+    padding: 0px 13px;
+  }
+}
+
+@media (max-width: 758px) {
+  .top {
+    padding: 0px 11px;
+  }
+}
+
+@media (max-width: 746px) {
+  .top {
+    padding: 0px 4px;
+  }
+}
+
+@media (max-width: 728px) {
+  .top {
+    padding: 0px;
+  }
+
+  .timer {
+    padding: 0.5em 4em;
   }
 
   .top > span {
-    font-size: 19px;
+    font-size: 17px;
+    letter-spacing: 3px;
   }
 
   .timer__icon {
@@ -298,35 +441,31 @@
   }
 
   .display {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
-/* @media (max-width: 592px) {
-  .main {
-    padding: 100px 20px;
-  }
-
+@media (max-width: 710px) {
   .top > span {
-    font-size: 17px;
+    letter-spacing: 2px;
   }
+}
 
-  .timer__icon {
-    width: 14px;
-    height: 14px;
+@media (max-width: 692px) {
+  .top > span {
+    letter-spacing: 1px;
   }
+}
 
-  .timer {
-    font-size: 16px;
+@media (max-width: 672px) {
+  .top > span {
+    letter-spacing: 0px;
+    font-size: 18px;
   }
-
-  .display {
-    font-size: 14px;
-  }
-} */
+}
 
 /* Mobile Style */
-@media screen and (max-width: 625px) {
+@media screen and (max-width: 654px) {
   .main {
     width: 100%;
     box-sizing: border-box;
@@ -357,11 +496,14 @@
     align-items: center;
     gap: 7.077px;
     margin-bottom: 35px;
+    padding: 0px;
+    letter-spacing: normal;
   }
 
   .top > span {
     font-size: 20px;
     margin-bottom: 20px !important;
+    letter-spacing: normal;
   }
 
   .timer__icon {
