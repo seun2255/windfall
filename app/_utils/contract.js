@@ -34,7 +34,7 @@ const contracts = {
   Matic: {
     stakingContract: process.env.NEXT_PUBLIC_MATIC_CONTRACT_ADDRESS,
     tokenContract: process.env.NEXT_PUBLIC_MATIC_TOKEN_CONTRACT_ADDRESS,
-    rpcURL: "https://polygon-testnet.public.blastapi.io",
+    rpcURL: "https://endpoints.omniatech.io/v1/matic/mumbai/public",
   },
   Ethereum: {
     stakingContract: process.env.NEXT_PUBLIC_ETHEREUM_CONTRACT_ADDRESS,
@@ -134,17 +134,17 @@ const switchNetwork = async (network) => {
         rpcUrls: [
           "https://goerli.infura.io/v3/feabfe61cc34425dae943b13d19d6f07",
         ],
-        blockExplorerUrls: ["https://goerli.etherscan.io/"], // Ethereum block explorer URL
+        blockExplorerUrls: ["https://goerli.etherscan.io/"], // Goerli block explorer URL
       },
       Matic: {
-        chainId: "0x13881", // Chain ID for Matic mainnet
+        chainId: "0x13881",
         chainName: "Matic Mumbai",
         nativeCurrency: {
           name: "MATIC",
           symbol: "MATIC",
           decimals: 18,
         },
-        rpcUrls: ["https://polygon-testnet.public.blastapi.io"], // Matic mainnet RPC URL
+        rpcUrls: ["https://rpc-mumbai.maticvigil.com"], // Matic mumbai RPC URL
         blockExplorerUrls: ["https://mumbai.polygonscan.com/"], // Matic block explorer URL
       },
     };
@@ -213,11 +213,8 @@ const getFrontendData = async (network) => {
  */
 const getDrawDetails = async () => {
   const cantoData = await getFrontendData("Canto");
-  console.log("Gottern Canto");
   const ethereumData = await getFrontendData("Ethereum");
-  console.log("Gotten Ethereum");
   const maticData = await getFrontendData("Matic");
-  console.log("Gotten Matic");
   const data = { Canto: cantoData, Ethereum: ethereumData, Matic: maticData };
 
   const networkList = ["Canto", "Ethereum", "Matic"];

@@ -2,12 +2,9 @@
 
 import Image from "next/image";
 import styles from "./index.module.css";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useMediaQuery } from "react-responsive";
 
 export default function RecentWindfalls() {
-  const dispatch = useDispatch();
   const { recentWindfalls } = useSelector((state) => state.app);
 
   // App color theme for the different networks
