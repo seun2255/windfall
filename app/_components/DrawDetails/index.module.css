@@ -323,7 +323,7 @@
 
 @media (max-width: 845px) {
   .top {
-    padding: 0px;
+    padding: 0px 5px;
   }
 
   .top > span {
@@ -375,6 +375,10 @@
 }
 
 @media (max-width: 798px) {
+  .top {
+    padding: 0px;
+  }
+
   .top > span {
     font-size: 22px;
     letter-spacing: 2.5px;
@@ -391,9 +395,13 @@
 }
 
 @media (max-width: 776px) {
+  .top {
+    padding: 0px;
+  }
+
   .top > span {
     font-size: 21px;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
   }
 
   .timer__icon {
@@ -406,12 +414,6 @@
   }
 }
 
-@media (max-width: 776px) {
-  .top {
-    padding: 0px 11px;
-  }
-}
-
 @media (max-width: 758px) {
   .top {
     padding: 0px 11px;
@@ -420,7 +422,12 @@
 
 @media (max-width: 746px) {
   .top {
-    padding: 0px 2px;
+    padding: 0px;
+  }
+
+  .top > span {
+    font-size: 20px;
+    letter-spacing: 1px;
   }
 }
 
@@ -436,7 +443,7 @@
 
   .top > span {
     font-size: 19px;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
   }
 
   .timer__icon {
@@ -455,17 +462,20 @@
 
 @media (max-width: 710px) {
   .top > span {
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
   }
 }
 
 @media (max-width: 692px) {
   .top > span {
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
 }
 
 @media (max-width: 672px) {
+  .top {
+    column-gap: 5px;
+  }
   .top > span {
     letter-spacing: 0px;
     font-size: 18px;
