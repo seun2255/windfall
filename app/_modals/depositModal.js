@@ -67,7 +67,7 @@ export default function DepositModal(props) {
   const minimumAmounts = {
     Canto: 0.1,
     Ethereum: 0.001,
-    Mumbai: 0.01,
+    Matic: 0.01,
   };
 
   return (
