@@ -5,16 +5,280 @@
   "abi": [
     {
       "inputs": [],
-      "name": "calculateAmounts",
-      "outputs": [
+      "name": "AccessControlBadConfirmation",
+      "type": "error"
+    },
+    {
+      "inputs": [
         {
-          "internalType": "uint256[]",
-          "name": "",
-          "type": "uint256[]"
+          "internalType": "uint48",
+          "name": "schedule",
+          "type": "uint48"
         }
       ],
-      "stateMutability": "view",
-      "type": "function"
+      "name": "AccessControlEnforcedDefaultAdminDelay",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "AccessControlEnforcedDefaultAdminRules",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "defaultAdmin",
+          "type": "address"
+        }
+      ],
+      "name": "AccessControlInvalidDefaultAdmin",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "neededRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "AccessControlUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "target",
+          "type": "address"
+        }
+      ],
+      "name": "AddressEmptyCode",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "unstakeTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "AlreadyUnstaking",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CriticalError",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "ERC1967InvalidImplementation",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ERC1967NonPayable",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "FailedInnerCall",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "available",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "required",
+          "type": "uint256"
+        }
+      ],
+      "name": "InsufficientBalance",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InsufficientQuota",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidInitialization",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidOwnership",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "minStake",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvalidStake",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "eligible",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timeUnstaking",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvalidUnstake",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "IsZero",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoValidStakers",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "winningToken",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "rewards",
+          "type": "uint256"
+        }
+      ],
+      "name": "RewardsClaimed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "StartedStaking",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "unstakingAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "StartedUnstaking",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "UpdateMetadata",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "winningToken",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "winningAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "randomNumber",
+          "type": "uint256"
+        }
+      ],
+      "name": "WinnerChosen",
+      "type": "event"
     },
     {
       "inputs": [
@@ -50,45 +314,12 @@
     },
     {
       "inputs": [],
-      "name": "dayDenom",
-      "outputs": [
-        {
-          "internalType": "uint32",
-          "name": "",
-          "type": "uint32"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "depositTokens",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
       "name": "drawCounter",
       "outputs": [
         {
-          "internalType": "uint256",
+          "internalType": "uint64",
           "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getContractBalance",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
+          "type": "uint64"
         }
       ],
       "stateMutability": "view",
@@ -139,9 +370,9 @@
         {
           "components": [
             {
-              "internalType": "uint256",
+              "internalType": "uint128",
               "name": "entreeTokens",
-              "type": "uint256"
+              "type": "uint128"
             },
             {
               "internalType": "uint64",
@@ -152,14 +383,9 @@
               "internalType": "uint64",
               "name": "unstakeTimestamp",
               "type": "uint64"
-            },
-            {
-              "internalType": "bool",
-              "name": "eligibleForRewards",
-              "type": "bool"
             }
           ],
-          "internalType": "struct IStaking.User",
+          "internalType": "struct Users.User",
           "name": "",
           "type": "tuple"
         }
@@ -171,7 +397,7 @@
       "inputs": [
         {
           "internalType": "bool",
-          "name": "condition",
+          "name": "_super",
           "type": "bool"
         }
       ],
@@ -206,12 +432,12 @@
     },
     {
       "inputs": [],
-      "name": "numberOfUsers",
+      "name": "minStake",
       "outputs": [
         {
-          "internalType": "uint256",
+          "internalType": "uint128",
           "name": "",
-          "type": "uint256"
+          "type": "uint128"
         }
       ],
       "stateMutability": "view",
@@ -219,67 +445,15 @@
     },
     {
       "inputs": [],
-      "name": "payoutPercent",
+      "name": "numberOfUsers",
       "outputs": [
         {
-          "internalType": "uint32",
+          "internalType": "uint64",
           "name": "",
-          "type": "uint32"
+          "type": "uint64"
         }
       ],
       "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "salt",
-          "type": "uint256"
-        }
-      ],
-      "name": "pickWinner",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "winningToken",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "winningAmount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "randomNumber",
-          "type": "uint256"
-        }
-      ],
-      "name": "publishWinner",
-      "outputs": [],
-      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -287,90 +461,9 @@
       "name": "publisherQuota",
       "outputs": [
         {
-          "internalType": "uint256",
+          "internalType": "uint128",
           "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "timestamp",
-          "type": "uint256"
-        }
-      ],
-      "name": "recentUnstaking",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint32",
-          "name": "_dayDenom",
-          "type": "uint32"
-        },
-        {
-          "internalType": "uint32",
-          "name": "_superMultiplier",
-          "type": "uint32"
-        }
-      ],
-      "name": "setDenoms",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint32",
-          "name": "_payoutPercent",
-          "type": "uint32"
-        }
-      ],
-      "name": "setPayoutPercent",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint32",
-          "name": "_superRewardsFrequency",
-          "type": "uint32"
-        }
-      ],
-      "name": "setSuperRewardFrequency",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "snapshot",
-      "outputs": [
-        {
-          "internalType": "uint256[]",
-          "name": "",
-          "type": "uint256[]"
+          "type": "uint128"
         }
       ],
       "stateMutability": "view",
@@ -403,32 +496,6 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "superMultiplier",
-      "outputs": [
-        {
-          "internalType": "uint32",
-          "name": "",
-          "type": "uint32"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "superRewardsFrequency",
-      "outputs": [
-        {
-          "internalType": "uint32",
-          "name": "",
-          "type": "uint32"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -440,19 +507,6 @@
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "withdrawTokens",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
     }
   ],
   "bytecode": "0x",
@@ -460,3 +514,4 @@
   "linkReferences": {},
   "deployedLinkReferences": {}
 }
+

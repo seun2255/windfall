@@ -15,11 +15,15 @@ import { setDrawDetails, setRecentWindfalls } from "./_redux/app";
 import { useEffect, useState } from "react";
 import NetworkModal from "./_modals/wrongNetwork";
 
-export default function Home() {
+//A functional component that serves as a UI block in the app, This is the main and default page of the app
+export default function Main() {
+  // Teh state of the varoius modals retrieved from the redux stores modals slice
   const { walletModal, depositModal, networkModal } = useSelector(
     (state) => state.modals
   );
   const [hydrate, setHydrate] = useState(false);
+
+  // The dispatch function is used to call the various actions from the redux store
   const dispatch = useDispatch();
 
   // Retrieves all the frontend data from the blockcahin before rendering the app
@@ -27,7 +31,9 @@ export default function Home() {
     const getData = async () => {
       const details = await getDrawDetails();
       const recentWindfalls = await getRecentWindfalls();
+      // Dispatching the setDrawDetails action in the redux app slice
       dispatch(setDrawDetails(details));
+      // Dispatching the setRecentWindfalls action in the redux app slice
       dispatch(setRecentWindfalls(recentWindfalls));
       setHydrate(true);
     };

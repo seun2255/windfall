@@ -4,6 +4,7 @@ import TOKENCONTRACT from "../_contracts/Token.json";
 import { formatEther } from "ethers";
 import processMetadata from "./processMetadata";
 import formatAmount from "./formatAmount";
+import axios from "axios";
 
 // creates an instance of the provider
 const getProvider = async () => {
@@ -325,6 +326,13 @@ const connect = async () => {
       data.tokens[i]["reward"] = tokenRewards;
     }
     data.chain = network;
+    contract.on("UpdateMetadata", async (tokenId) => {
+      const response = await axios.post("/api/upload-metadata", {
+        tokenId: Number(tokenId),
+        network: data.chain,
+      });
+      console.log(response);
+    });
 
     return data;
   } else {
@@ -358,6 +366,12 @@ const getBalanceMinusGas = async () => {
   }
 
   return amount;
+};
+
+const getTokenMetadata = async (_tokenId, network) => {
+  const contract = await getContractJson(network);
+  const metadata = await contract.getMetadata(_tokenId);
+  return metadata;
 };
 
 /**
@@ -454,4 +468,5 @@ export {
   unstake,
   claimRewards,
   switchNetwork,
+  getTokenMetadata,
 };
