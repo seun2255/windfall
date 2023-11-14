@@ -147,7 +147,6 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1;
   }
 
   .main {
@@ -186,7 +185,6 @@
     display: flex;
     column-gap: 20px;
     align-items: center;
-    margin-bottom: 32px;
   }
 
   .bubble {
@@ -203,11 +201,9 @@
     font-weight: 500;
     font-size: 14px;
     color: #ffffff;
-    width: 320px;
+    width: 270px;
     text-wrap: wrap;
-    text-align: left;
   }
-
   .details {
     color: #fff;
     font-family: "Lato";

@@ -50,6 +50,7 @@
   line-height: normal;
   letter-spacing: -0.12px;
   margin-bottom: 56px;
+  text-align: center;
 }
 
 .gradient__border {
@@ -115,7 +116,6 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1;
   }
 
   .main {
