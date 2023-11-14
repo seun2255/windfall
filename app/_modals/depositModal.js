@@ -9,7 +9,7 @@ import { animated, useSpring } from "@react-spring/web";
 import {
   setContractFailModal,
   setDepositModal,
-  setErrorModal,
+  setFirstStakeModal,
 } from "../_redux/modals";
 import { updateUser } from "../_redux/user";
 import { getBalanceMinusGas, depositTokens, connect } from "../_utils/contract";
@@ -18,6 +18,7 @@ import AgreementModal from "./agreementModal";
 
 export default function DepositModal(props) {
   const { chain } = useSelector((state) => state.app);
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState(0);
@@ -56,9 +57,11 @@ export default function DepositModal(props) {
       if (result) {
         const data = await connect();
         dispatch(updateUser({ address: data.address, deposits: data.tokens }));
+        const firstStake = data.tokens.length === 1 ? true : false;
         setDepositing(false);
         dispatch(setDepositModal(false));
         setAgreementModal(false);
+        if (firstStake) dispatch(setFirstStakeModal(true));
       } else {
         setDepositing(false);
         dispatch(setDepositModal(false));

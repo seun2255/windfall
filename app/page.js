@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import NetworkModal from "./_modals/wrongNetwork";
 import ErrorModal from "./_modals/errorModal";
 import ContractFailModal from "./_modals/contractFailModal";
+import FirstStakeModal from "./_modals/firstStakeModal";
 
 //A functional component that serves as a UI block in the app, This is the main and default page of the app
 export default function Main() {
@@ -26,6 +27,7 @@ export default function Main() {
     networkModal,
     contractFailModal,
     errorModal,
+    firstStakeModal,
   } = useSelector((state) => state.modals);
   const [hydrate, setHydrate] = useState(false);
 
@@ -64,6 +66,7 @@ export default function Main() {
         {networkModal && <NetworkModal />}
         {contractFailModal && <ContractFailModal />}
         {errorModal && <ErrorModal />}
+        {firstStakeModal && <FirstStakeModal />}
       </main>
     );
   }
