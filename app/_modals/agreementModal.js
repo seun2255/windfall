@@ -28,7 +28,8 @@ export default function AgreementModal(props) {
     setChecked(!checked);
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.stopPropagation();
     if (checked) {
       setModal(false);
       type === "stake" ? handleDeposit() : handleUnstake();
@@ -77,7 +78,7 @@ export default function AgreementModal(props) {
         <div className={styles.gradient__border}>
           <button
             className={styles.change__button}
-            onClick={() => handleClick()}
+            onClick={(e) => handleClick(e)}
             style={{ color: "#ffffff" }}
           >
             <span>CONTINUE</span>
