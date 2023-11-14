@@ -25,15 +25,14 @@ async function uploadMetadata(tokenId, network) {
   try {
     const metadata = await getTokenMetadata(tokenId, network);
     const fileName = `metadata_${tokenId}.json`;
-    console.log(fileName);
     const file = bucket.file(`windfall-metadata/${fileName}`);
-    console.log(`windfall-metadata/${fileName}`);
-    await file.save(JSON.stringify(metadata), {
-      contentType: "application/json",
-    });
-    console.log("Reached here 3");
+    file
+      .save(JSON.stringify(metadata), {
+        contentType: "application/json",
+      })
+      .then(() => {});
     console.log(
-      `JSON data has been uploaded to gs://windfall-wintoken/windfall-metadata/${path}`
+      `JSON data has been uploaded to gs://windfall-wintoken/windfall-metadata/${fileName}`
     );
   } catch (error) {
     console.log("Error uploading metadata");

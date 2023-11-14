@@ -14,13 +14,19 @@ import { getDrawDetails, getRecentWindfalls } from "./_utils/contract";
 import { setDrawDetails, setRecentWindfalls } from "./_redux/app";
 import { useEffect, useState } from "react";
 import NetworkModal from "./_modals/wrongNetwork";
+import ErrorModal from "./_modals/errorModal";
+import ContractFailModal from "./_modals/contractFailModal";
 
 //A functional component that serves as a UI block in the app, This is the main and default page of the app
 export default function Main() {
   // Teh state of the varoius modals retrieved from the redux stores modals slice
-  const { walletModal, depositModal, networkModal } = useSelector(
-    (state) => state.modals
-  );
+  const {
+    walletModal,
+    depositModal,
+    networkModal,
+    contractFailModal,
+    errorModal,
+  } = useSelector((state) => state.modals);
   const [hydrate, setHydrate] = useState(false);
 
   // The dispatch function is used to call the various actions from the redux store
@@ -56,6 +62,8 @@ export default function Main() {
         {walletModal && <ConnectWalletModal />}
         {depositModal && <DepositModal />}
         {networkModal && <NetworkModal />}
+        {contractFailModal && <ContractFailModal />}
+        {errorModal && <ErrorModal />}
       </main>
     );
   }

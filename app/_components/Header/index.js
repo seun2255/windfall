@@ -20,7 +20,8 @@ export default function Header() {
 
   // Object for associating each network with a app theme color
   const colors = { Canto: "#01e186", Ethereum: "#3e8fff", Matic: "#a46dff" };
-  const networks = ["Canto", "Ethereum", "Matic"];
+  // Add Ethereum and Matic to the array below to include their networks in the app
+  const networks = ["Canto"];
 
   // React spring animation
   const popUpEffect = useSpring({

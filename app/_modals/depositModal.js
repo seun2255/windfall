@@ -6,10 +6,15 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { animated, useSpring } from "@react-spring/web";
-import { setDepositModal } from "../_redux/modals";
+import {
+  setContractFailModal,
+  setDepositModal,
+  setErrorModal,
+} from "../_redux/modals";
 import { updateUser } from "../_redux/user";
 import { getBalanceMinusGas, depositTokens, connect } from "../_utils/contract";
 import { useMediaQuery } from "react-responsive";
+import AgreementModal from "./agreementModal";
 
 export default function DepositModal(props) {
   const { chain } = useSelector((state) => state.app);
@@ -18,6 +23,7 @@ export default function DepositModal(props) {
   const [amount, setAmount] = useState(0);
   const [belowMinimum, setBelowMinimum] = useState(false);
   const [depositing, setDepositing] = useState(false);
+  const [agreementModal, setAgreementModal] = useState(false);
 
   const isMobile = useMediaQuery({
     query: "(max-width: 662px)",
@@ -52,8 +58,12 @@ export default function DepositModal(props) {
         dispatch(updateUser({ address: data.address, deposits: data.tokens }));
         setDepositing(false);
         dispatch(setDepositModal(false));
+        setAgreementModal(false);
       } else {
         setDepositing(false);
+        dispatch(setDepositModal(false));
+        setAgreementModal(false);
+        dispatch(setContractFailModal(true));
       }
     } else {
       setBelowMinimum(true);
@@ -77,14 +87,19 @@ export default function DepositModal(props) {
         e.stopPropagation();
         dispatch(setDepositModal(false));
       }}
+      style={
+        agreementModal
+          ? { backdropFilter: "none", backgroundColor: "transparent" }
+          : null
+      }
     >
       <animated.div
         className={styles.main}
-        style={popUpEffect}
         onClick={(e) => {
           e.stopPropagation();
           dispatch(setDepositModal(true));
         }}
+        style={agreementModal ? { opacity: 0 } : { popUpEffect }}
       >
         <h2 className={styles.title}>Deposit Tokens</h2>
         <div className={styles.gradient__border}>
@@ -123,7 +138,7 @@ export default function DepositModal(props) {
         ) : (
           <button
             className={styles.deposit__button}
-            onClick={handleDeposit}
+            onClick={() => setAgreementModal(true)}
             style={
               depositing
                 ? {
@@ -147,6 +162,13 @@ export default function DepositModal(props) {
           Looking for a different pool? Change your wallet’s network.{" "}
         </span>
       </animated.div>
+      {agreementModal && (
+        <AgreementModal
+          type={"stake"}
+          handleDeposit={handleDeposit}
+          setModal={setAgreementModal}
+        />
+      )}
     </div>
   );
 }

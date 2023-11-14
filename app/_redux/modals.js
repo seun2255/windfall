@@ -10,6 +10,9 @@ const initialState = {
   walletModal: false,
   depositModal: false,
   networkModal: false,
+  errorModal: false,
+  contractFailModal: false,
+  agreementModal: false,
 };
 
 // The reducers object contains the various functions used in modifying the state
@@ -37,11 +40,35 @@ export const modalsSlice = createSlice({
     setNetworkModal: (state, action) => {
       state.networkModal = action.payload;
     },
+    /**
+     * @param {*} action boolean value indicating whether the Change Error modal should be displayed or not.
+     */
+    setErrorModal: (state, action) => {
+      state.errorModal = action.payload;
+    },
+    /**
+     * @param {*} action boolean value indicating whether the Change ContractFail modal should be displayed or not.
+     */
+    setContractFailModal: (state, action) => {
+      state.contractFailModal = action.payload;
+    },
+    /**
+     * @param {*} action boolean value indicating whether the Change Agreement modal should be displayed or not.
+     */
+    setAgreementModal: (state, action) => {
+      state.agreementModalgreementModal = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setWalletModal, setDepositModal, setNetworkModal } =
-  modalsSlice.actions;
+export const {
+  setWalletModal,
+  setDepositModal,
+  setNetworkModal,
+  setErrorModal,
+  setContractFailModal,
+  setAgreementModal,
+} = modalsSlice.actions;
 
 export default modalsSlice.reducer;

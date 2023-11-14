@@ -10,6 +10,7 @@ import {
   setWalletModal,
   setDepositModal,
   setNetworkModal,
+  setErrorModal,
 } from "../_redux/modals";
 import { connect, det } from "../_utils/contract";
 import { login } from "../_redux/user";
@@ -50,22 +51,7 @@ export default function ConnectWalletModal(props) {
   const handleConnect = async () => {
     // If a second checkbox is added change this to if(checked1 && checked2)
     if (checked1) {
-      const data = await connect();
-      const colors = {
-        Canto: "#01e186",
-        Ethereum: "#3e8fff",
-        Matic: "#a46dff",
-      };
-      dispatch(setAppData({ color: colors[data.chain], chain: data.chain }));
-      if (data.chain === "Other") {
-        dispatch(setWalletModal(false));
-        dispatch(setNetworkModal(true));
-      } else {
-        dispatch(login({ address: data.address, deposits: data.tokens }));
-        dispatch(setWalletModal(false));
-      }
-
-      window.ethereum.on("networkChanged", async () => {
+      try {
         const data = await connect();
         const colors = {
           Canto: "#01e186",
@@ -74,22 +60,46 @@ export default function ConnectWalletModal(props) {
         };
         dispatch(setAppData({ color: colors[data.chain], chain: data.chain }));
         if (data.chain === "Other") {
-          dispatch(login({ address: "", deposits: [] }));
-          dispatch(setDepositModal(false));
           dispatch(setWalletModal(false));
           dispatch(setNetworkModal(true));
         } else {
           dispatch(login({ address: data.address, deposits: data.tokens }));
           dispatch(setWalletModal(false));
         }
-      });
 
-      // This event is triggered when the active account is changed
-      window.ethereum.on("accountsChanged", async (accounts) => {
-        const data = await connect();
-        dispatch(setAppData({ color: colors[data.chain], chain: data.chain }));
-        dispatch(login({ address: data.address, deposits: data.tokens }));
-      });
+        window.ethereum.on("networkChanged", async () => {
+          const data = await connect();
+          const colors = {
+            Canto: "#01e186",
+            Ethereum: "#3e8fff",
+            Matic: "#a46dff",
+          };
+          dispatch(
+            setAppData({ color: colors[data.chain], chain: data.chain })
+          );
+          if (data.chain === "Other") {
+            dispatch(login({ address: "", deposits: [] }));
+            dispatch(setDepositModal(false));
+            dispatch(setWalletModal(false));
+            dispatch(setNetworkModal(true));
+          } else {
+            dispatch(login({ address: data.address, deposits: data.tokens }));
+            dispatch(setWalletModal(false));
+          }
+        });
+
+        // This event is triggered when the active account is changed
+        window.ethereum.on("accountsChanged", async (accounts) => {
+          const data = await connect();
+          dispatch(
+            setAppData({ color: colors[data.chain], chain: data.chain })
+          );
+          dispatch(login({ address: data.address, deposits: data.tokens }));
+        });
+      } catch {
+        dispatch(setWalletModal(false));
+        dispatch(setErrorModal(true));
+      }
     }
   };
 

@@ -21,10 +21,11 @@ export default function DrawDetails() {
   const timeTillNextDraw = getTimeTillNextDraw();
 
   //Array of variables that make the app rerender with the latest state upon changing
+  // Uncommebt the other 2 items once Ethereum and Matic networks are ready to eb added to the app
   const dependencyArray = [
     drawDetails.Canto.totalStaked,
-    drawDetails.Matic.totalStaked,
-    drawDetails.Ethereum.totalStaked,
+    // drawDetails.Matic.totalStaked,
+    // drawDetails.Ethereum.totalStaked,
   ];
 
   // UseEffect that rerenders the app anytime one of the dependecies above are changed

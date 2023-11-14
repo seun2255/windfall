@@ -8,9 +8,11 @@ import {
   getDrawDetails,
 } from "@/app/_utils/contract";
 import { setDrawDetails } from "@/app/_redux/app";
+import { setErrorModal, setContractFailModal } from "@/app/_redux/modals";
 import { calculateUnstakePeriod } from "@/app/_utils/time";
 import { useDispatch } from "react-redux";
 import { updateUser } from "@/app/_redux/user";
+import AgreementModal from "@/app/_modals/agreementModal";
 
 // Claim rewards button
 function ClaimRewardButton(props) {
@@ -30,6 +32,7 @@ function ClaimRewardButton(props) {
       );
     } else {
       setClaiming(false);
+      dispatch(setContractFailModal(true));
     }
   };
 
@@ -113,6 +116,7 @@ function FinishUnstakingButton(props) {
       dispatch(updateUser({ address: data.address, deposits: data.tokens }));
     } else {
       setWithdrawing(false);
+      dispatch(setContractFailModal(true));
     }
   };
 
@@ -141,6 +145,7 @@ function FinishUnstakingButton(props) {
 function UnstakeButton(props) {
   const [unstaking, setUnstaking] = useState(false);
   const { setUnstakingBufferPeriod, showBuffer, data } = props;
+  const [agreementModal, setAgreementModal] = useState(false);
   const dispatch = useDispatch();
 
   // Starts the unstaking buffer period
@@ -159,6 +164,8 @@ function UnstakeButton(props) {
         );
       } else {
         setUnstaking(false);
+        setAgreementModal(false);
+        dispatch(setContractFailModal(true));
       }
     }
   };
@@ -166,7 +173,7 @@ function UnstakeButton(props) {
   return (
     <button
       className={styles.action}
-      onClick={handleUnstake}
+      onClick={() => setAgreementModal(true)}
       style={
         unstaking
           ? { color: "white", backgroundColor: "rgba(255, 62, 62, 1)" }
@@ -179,6 +186,13 @@ function UnstakeButton(props) {
         </span>
       ) : (
         "Unstake"
+      )}
+      {agreementModal && (
+        <AgreementModal
+          type={"unstake"}
+          setModal={setAgreementModal}
+          handleUnstake={handleUnstake}
+        />
       )}
     </button>
   );

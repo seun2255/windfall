@@ -50,7 +50,7 @@ const getContract = async () => {
   const signer = await getSigner();
   const contract = new ethers.Contract(
     contracts[network].stakingContract,
-    CONTRACT.abi,
+    CONTRACT,
     signer
   );
   return contract;
@@ -66,7 +66,7 @@ const getContractJson = async (network) => {
   // Creates a contract instance
   const contract = new ethers.Contract(
     contracts[network].stakingContract,
-    CONTRACT.abi,
+    CONTRACT,
     provider
   );
   return contract;
@@ -78,7 +78,7 @@ const getTokenContract = async () => {
   const signer = await getSigner();
   const contract = new ethers.Contract(
     contracts[network].tokenContract,
-    TOKENCONTRACT.abi,
+    TOKENCONTRACT,
     signer
   );
   return contract;
@@ -91,13 +91,17 @@ const determineNetwork = async () => {
 
   var networkName;
 
-  if (network.name === "goerli") {
-    networkName = "Ethereum";
-  } else if (network.name === "matic-mumbai") {
-    networkName = "Matic";
-  } else if (network.chainId.toString() === "7701") {
+  if (network.chainId.toString() === "7701") {
     networkName = "Canto";
-  } else {
+  }
+  // Uncomment the below lines to add Ethereum and Matic
+
+  // else if (network.name === "goerli") {
+  //   networkName = "Ethereum";
+  // } else if (network.name === "matic-mumbai") {
+  //   networkName = "Matic";
+  // }
+  else {
     return "Other";
   }
 
@@ -180,6 +184,7 @@ const getFrontendData = async (network) => {
   const [
     isSuper,
     superMultiplier,
+    drawCounter,
     dayAmount,
     weekAmount,
     totalStaked,
@@ -189,6 +194,7 @@ const getFrontendData = async (network) => {
     [
       "bool",
       "uint32",
+      "uint64",
       "uint256",
       "uint256",
       "uint256",
@@ -200,6 +206,7 @@ const getFrontendData = async (network) => {
   return {
     isSuper,
     superMultiplier,
+    drawCounter,
     dayAmount,
     weekAmount,
     totalStaked,
@@ -214,11 +221,14 @@ const getFrontendData = async (network) => {
  */
 const getDrawDetails = async () => {
   const cantoData = await getFrontendData("Canto");
-  const ethereumData = await getFrontendData("Ethereum");
-  const maticData = await getFrontendData("Matic");
-  const data = { Canto: cantoData, Ethereum: ethereumData, Matic: maticData };
+  // const ethereumData = await getFrontendData("Ethereum");
+  // const maticData = await getFrontendData("Matic");
 
-  const networkList = ["Canto", "Ethereum", "Matic"];
+  //add Ethereum: ethereumData, Matic: maticData to the array below to include Ethereuem and Matic
+  const data = { Canto: cantoData };
+
+  //add Ethereum and Matic to the array below to include the Ethereuem and Matic netowrks
+  const networkList = ["Canto"];
   const colors = { Canto: "#01e186", Ethereum: "#3e8fff", Matic: "#a46dff" };
   const list = networkList.map((item) => {
     return {
@@ -234,8 +244,6 @@ const getDrawDetails = async () => {
   });
   const details = {
     Canto: list[0],
-    Ethereum: list[1],
-    Matic: list[2],
   };
 
   return details;
@@ -244,18 +252,22 @@ const getDrawDetails = async () => {
 // Returns an array of the last 12 draw winners
 const getRecentWindfalls = async () => {
   const cantoData = await getFrontendData("Canto");
-  const ethereumData = await getFrontendData("Ethereum");
-  const maticData = await getFrontendData("Matic");
-  const data = { Canto: cantoData, Ethereum: ethereumData, Matic: maticData };
+  // const ethereumData = await getFrontendData("Ethereum");
+  // const maticData = await getFrontendData("Matic");
 
-  const networkList = ["Canto", "Ethereum", "Matic"];
+  //add Ethereum: ethereumData, Matic: maticData to the array below to include Ethereuem and Matic
+  const data = { Canto: cantoData };
+
+  //add Ethereum and Matic to the array below to include the Ethereuem and Matic netowrks
+  const networkList = ["Canto"];
 
   const contract = await getContractJson("Canto");
   const recentWindfalls = [];
 
   const drawCounter = await contract.drawCounter();
 
-  for (let i = 0; i < 4; i++) {
+  // change the 7 below to 4 when the other networks have been added
+  for (let i = 0; i < 7; i++) {
     const currentDate = new Date();
     const currentHour = currentDate.getUTCHours();
     const currentMinute = currentDate.getUTCMinutes();
@@ -421,16 +433,28 @@ const unstake = async (_tokenId) => {
   const network = await determineNetwork();
   const tokenContract = await getTokenContract();
   const contract = await getContract();
+  const userAddress = await getAddress();
+  const token = Number();
 
   try {
-    const approvalTx = await tokenContract.approve(
+    const isApproved = await tokenContract.isApproved(
+      userAddress,
       contracts[network].stakingContract,
       _tokenId
     );
 
-    await approvalTx.wait();
+    if (!isApproved) {
+      const approvalTx = await tokenContract.approve(
+        contracts[network].stakingContract,
+        _tokenId
+      );
 
-    const unstakeTx = await contract.unstake(_tokenId);
+      await approvalTx.wait();
+    }
+
+    console.log("Got here 1");
+    const unstakeTx = await contract.unstake(parseInt(_tokenId));
+    console.log("Got here 2");
 
     await unstakeTx.wait();
 

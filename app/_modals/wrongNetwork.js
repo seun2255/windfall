@@ -28,10 +28,11 @@ export default function NetworkModal(props) {
   }, []);
 
   // List of networks the user can switch to and their icons
+  // uncomment the 2 objects below to add the Ethereum and Matic networks
   const options = [
     { text: "Canto", icon: icons.canto },
-    { text: "Ethereum", icon: icons.ethereum },
-    { text: "Matic", icon: icons.matic },
+    // { text: "Ethereum", icon: icons.ethereum },
+    // { text: "Matic", icon: icons.matic },
   ];
 
   /**
