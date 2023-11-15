@@ -6,7 +6,9 @@ import { useDispatch } from "react-redux";
 import { animated, useSpring } from "@react-spring/web";
 import { setContractFailModal } from "../_redux/modals";
 
+// Component for both the deposit agreement and Unstake agreement Modals
 export default function AgreementModal(props) {
+  // the type variable determines which agreement the modal shows, it is either stake or unstake
   const { type, handleDeposit, handleUnstake, setModal } = props;
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -28,6 +30,7 @@ export default function AgreementModal(props) {
     setChecked(!checked);
   };
 
+  // Closes the modal and initates the deposit / unstake transaction
   const handleClick = (e) => {
     e.stopPropagation();
     if (checked) {
@@ -64,6 +67,7 @@ export default function AgreementModal(props) {
             }
           ></div>
           <span className={styles.text}>
+            {/* Checks the type of the modal and then displays the associated agreemtent text */}
             {type === "stake"
               ? `I understand that my selected tokens will be 
                 withdrawn from my wallet and will require a 

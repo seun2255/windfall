@@ -58,15 +58,20 @@ export default function ConnectWalletModal(props) {
           Ethereum: "#3e8fff",
           Matic: "#a46dff",
         };
+        // The state of the app is stored in the redux store
         dispatch(setAppData({ color: colors[data.chain], chain: data.chain }));
+        // If the user is connected to the wrong networl the Wrong Network modal pops up
         if (data.chain === "Other") {
           dispatch(setWalletModal(false));
           dispatch(setNetworkModal(true));
         } else {
+          // Stores the users details in the redux store
           dispatch(login({ address: data.address, deposits: data.tokens }));
           dispatch(setWalletModal(false));
         }
 
+        // An event is triggerred when the network is changed and the state of the app and the users
+        // details get updated.
         window.ethereum.on("networkChanged", async () => {
           const data = await connect();
           const colors = {

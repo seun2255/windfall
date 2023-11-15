@@ -22,6 +22,7 @@ export default function FirstStakeModal() {
     setOpen(true);
   }, []);
 
+  // Closes the Modal
   const handleClick = (e) => {
     e.stopPropagation();
     dispatch(setFirstStakeModal(false));
@@ -60,6 +61,7 @@ export default function FirstStakeModal() {
               style={{ backgroundColor: "#4DFF5F", borderColor: "#007D14" }}
             ></div>
             <span className={styles.text}>
+              {/* Colored link */}
               <Link
                 href={
                   "https://app.gitbook.com/o/kJtfy5OqPfuA6aeBb99F/s/p4yUSk23AubmL5kX5Stz/"

@@ -21,6 +21,7 @@ export default function ContractFailModal(props) {
     setOpen(true);
   }, []);
 
+  // Closes the ContractFail modal
   const handleClick = (e) => {
     e.stopPropagation();
     dispatch(setContractFailModal(false));

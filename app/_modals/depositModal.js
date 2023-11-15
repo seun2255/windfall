@@ -57,18 +57,22 @@ export default function DepositModal(props) {
       if (result) {
         const data = await connect();
         dispatch(updateUser({ address: data.address, deposits: data.tokens }));
+        // Checks if this is the users first stake
         const firstStake = data.tokens.length === 1 ? true : false;
         setDepositing(false);
         dispatch(setDepositModal(false));
         setAgreementModal(false);
+        // If its the users first stake the First STake Modal pops up
         if (firstStake) dispatch(setFirstStakeModal(true));
       } else {
+        // If the contract call fails the deposit modal is closed and the contract fail modal pops up
         setDepositing(false);
         dispatch(setDepositModal(false));
         setAgreementModal(false);
         dispatch(setContractFailModal(true));
       }
     } else {
+      // Displays a warning if the user tries to deposit an amount below the minimum
       setBelowMinimum(true);
       setTimeout(() => {
         setBelowMinimum(false);

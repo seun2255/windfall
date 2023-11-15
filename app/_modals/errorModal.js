@@ -22,6 +22,7 @@ export default function ErrorModal(props) {
     setOpen(true);
   }, []);
 
+  // Closes the Error Modal
   const handleClick = (e) => {
     e.stopPropagation();
     dispatch(setErrorModal(false));
