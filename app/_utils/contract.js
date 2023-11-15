@@ -10,7 +10,6 @@ import axios from "axios";
 let provider;
 let contractJson;
 let signer;
-let network;
 
 // creates an instance of the provider
 const getProvider = async () => {
@@ -103,26 +102,26 @@ const getTokenContract = async () => {
 
 // returns a string of the network the user is connected to
 const determineNetwork = async () => {
-  if (!network) {
-    const provider = await getProvider();
-    const providerNetwork = await provider.getNetwork();
+  const provider = await getProvider();
+  const network = await provider.getNetwork();
+  var networkName;
 
-    if (providerNetwork.chainId.toString() === "7701") {
-      network = "Canto";
-    }
-    // Uncomment the below lines to add Ethereum and Matic
-
-    // else if (providerNetwork.name === "goerli") {
-    //   network = "Ethereum";
-    // } else if (providerNetwork.name === "matic-mumbai") {
-    //   network = "Matic";
-    // }
-    else {
-      network = "Other";
-    }
+  if (network.chainId.toString() === "7701") {
+    networkName = "Canto";
   }
 
-  return network;
+  // Uncomment the below lines to add Ethereum and Matic
+
+  // else if (network.name === "goerli") {
+  //   networkName = "Ethereum";
+  // } else if (network.name === "matic-mumbai") {
+  //   networkName = "Matic";
+  // }
+  else {
+    return "Other";
+  }
+
+  return networkName;
 };
 
 /**
@@ -257,7 +256,7 @@ const getDrawDetails = (frontendData) => {
       daily: formatAmount(parseFloat(formatEther(data[item].dayAmount))),
       super: formatAmount(parseFloat(formatEther(data[item].weekAmount))),
       color: colors[item],
-      drawCounter: data[item].drawCounter,
+      drawCounter: Number(data[item].drawCounter),
     };
   });
   const details = {
@@ -354,7 +353,9 @@ const getContractState = async () => {
 const connect = async () => {
   var data = {};
   const address = await getAddress();
+  console.log(address);
   const network = await determineNetwork();
+  console.log(network);
   if (network !== "Other") {
     const contract = await getContract();
     const tokenContract = await getTokenContract();
@@ -381,7 +382,6 @@ const connect = async () => {
         tokenId: Number(tokenId),
         network: data.chain,
       });
-      console.log(response);
     });
 
     return data;
@@ -472,7 +472,6 @@ const unstake = async (_tokenId) => {
   const tokenContract = await getTokenContract();
   const contract = await getContract();
   const userAddress = await getAddress();
-  const token = Number();
 
   try {
     const isApproved = await tokenContract.isApproved(
@@ -490,9 +489,7 @@ const unstake = async (_tokenId) => {
       await approvalTx.wait();
     }
 
-    console.log("Got here 1");
     const unstakeTx = await contract.unstake(parseInt(_tokenId));
-    console.log("Got here 2");
 
     await unstakeTx.wait();
 

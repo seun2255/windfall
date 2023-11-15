@@ -8,6 +8,7 @@ import ethereum from "./ethereum.svg";
 import ethereumMobile from "./ethereum.svg";
 import twitter from "./twitter.svg";
 import discord from "./discord.svg";
+import flower from "./flower.png";
 
 //module for using all icons
 const icons = {
@@ -21,6 +22,7 @@ const icons = {
   metamask,
   twitter,
   discord,
+  flower,
 };
 
 export default icons;

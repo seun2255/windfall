@@ -16,7 +16,7 @@ export default function Footer() {
           W
           <span>
             <div className={styles.flower}>
-              <Image src={"/img/common/flower.png"} alt="logo" fill />
+              <Image src={icons.flower} alt="logo" fill />
             </div>
             I
           </span>
