@@ -37,6 +37,7 @@ export default function Main() {
   useEffect(() => {
     const getData = async () => {
       const data = await getContractState();
+      console.log("Interval");
       const details = data.drawDetails;
       const recentWindfalls = data.recentWindfalls;
       // Dispatching the setDrawDetails action in the redux app slice
@@ -47,6 +48,12 @@ export default function Main() {
     };
 
     getData();
+
+    // Sets up an interval to fetch data every 20 seconds
+    const intervalId = setInterval(getData, 20000);
+
+    // Clears the interval when the component is unmounted, this ensures that there are no duplicate intervals fetching data
+    return () => clearInterval(intervalId);
   }, []);
 
   // The app is rendered only after the frontend data has been fetched from the backend
