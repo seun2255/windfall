@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
 // The slices (parts) of the redux store for various features
 // Each slice contains its own state and functions for modifying that state

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./errorModal.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";

@@ -16,9 +16,8 @@ import { getBalanceMinusGas, depositTokens, connect } from "../_utils/contract";
 import { useMediaQuery } from "react-responsive";
 import AgreementModal from "./agreementModal";
 
-export default function DepositModal(props) {
+export default function DepositModal() {
   const { chain } = useSelector((state) => state.app);
-  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState(0);

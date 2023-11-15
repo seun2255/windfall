@@ -21,7 +21,6 @@ const bucket = storage.bucket("windfall-wintoken");
 
 // Upload metadata to cloud
 async function uploadMetadata(tokenId, network) {
-  console.log("Uploading Metadata");
   try {
     const metadata = await getTokenMetadata(tokenId, network);
     const fileName = `metadata_${tokenId}.json`;

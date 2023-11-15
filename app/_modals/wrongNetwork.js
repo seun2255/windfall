@@ -5,7 +5,7 @@ import styles from "./wrongNetwork.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { animated, useSpring } from "@react-spring/web";
-import { setDepositModal, setNetworkModal } from "../_redux/modals";
+import { setNetworkModal } from "../_redux/modals";
 import { setAppData } from "../_redux/app";
 import { login } from "../_redux/user";
 import icons from "../_assets/icons/icons";

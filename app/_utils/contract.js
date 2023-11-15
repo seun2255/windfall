@@ -6,17 +6,32 @@ import processMetadata from "./processMetadata";
 import formatAmount from "./formatAmount";
 import axios from "axios";
 
+// Cached variables
+let provider;
+let contractJson;
+let signer;
+let network;
+
 // creates an instance of the provider
 const getProvider = async () => {
-  const provider = new ethers.BrowserProvider(window.ethereum);
+  if (!provider) {
+    provider = new ethers.BrowserProvider(window.ethereum);
+  }
   return provider;
 };
 
 // creates an instance of the signer
 const getSigner = async () => {
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  const signer = await provider.getSigner();
+  if (!signer) {
+    const provider = await getProvider();
+    signer = await provider.getSigner();
+  }
   return signer;
+};
+
+const setNewSigner = async () => {
+  const provider = await getProvider();
+  signer = await provider.getSigner();
 };
 
 // gets the address of the connected user
@@ -58,18 +73,20 @@ const getContract = async () => {
 
 // creates an instance of the contract object with a Json RPC provider. contract view functions can be called without being connected
 const getContractJson = async (network) => {
-  const rpcURL = contracts[network].rpcURL;
+  if (!contractJson) {
+    const rpcURL = contracts[network].rpcURL;
 
-  // Creates an ethers.js provider using the JSON-RPC URL
-  const provider = new ethers.JsonRpcProvider(rpcURL);
+    // Creates an ethers.js provider using the JSON-RPC URL
+    const provider = new ethers.JsonRpcProvider(rpcURL);
 
-  // Creates a contract instance
-  const contract = new ethers.Contract(
-    contracts[network].stakingContract,
-    CONTRACT,
-    provider
-  );
-  return contract;
+    // Creates a contract instance
+    contractJson = new ethers.Contract(
+      contracts[network].stakingContract,
+      CONTRACT,
+      provider
+    );
+  }
+  return contractJson;
 };
 
 // creates an instance of the contract object for the token contract of the network the user is connected to
@@ -86,26 +103,26 @@ const getTokenContract = async () => {
 
 // returns a string of the network the user is connected to
 const determineNetwork = async () => {
-  const provider = await getProvider();
-  const network = await provider.getNetwork();
+  if (!network) {
+    const provider = await getProvider();
+    const providerNetwork = await provider.getNetwork();
 
-  var networkName;
+    if (providerNetwork.chainId.toString() === "7701") {
+      network = "Canto";
+    }
+    // Uncomment the below lines to add Ethereum and Matic
 
-  if (network.chainId.toString() === "7701") {
-    networkName = "Canto";
+    // else if (providerNetwork.name === "goerli") {
+    //   network = "Ethereum";
+    // } else if (providerNetwork.name === "matic-mumbai") {
+    //   network = "Matic";
+    // }
+    else {
+      network = "Other";
+    }
   }
-  // Uncomment the below lines to add Ethereum and Matic
 
-  // else if (network.name === "goerli") {
-  //   networkName = "Ethereum";
-  // } else if (network.name === "matic-mumbai") {
-  //   networkName = "Matic";
-  // }
-  else {
-    return "Other";
-  }
-
-  return networkName;
+  return network;
 };
 
 /**
@@ -219,10 +236,10 @@ const getFrontendData = async (network) => {
  * @notice gets the detials for the next draw
  * @returns an object with the draw details for each netowrk available on the app
  */
-const getDrawDetails = async () => {
-  const cantoData = await getFrontendData("Canto");
-  // const ethereumData = await getFrontendData("Ethereum");
-  // const maticData = await getFrontendData("Matic");
+const getDrawDetails = (frontendData) => {
+  const cantoData = frontendData["Canto"];
+  // const ethereumData = frontendData["Ethereum"];
+  // const maticData = frontendData["Matic"];
 
   //add Ethereum: ethereumData, Matic: maticData to the array below to include Ethereuem and Matic
   const data = { Canto: cantoData };
@@ -240,6 +257,7 @@ const getDrawDetails = async () => {
       daily: formatAmount(parseFloat(formatEther(data[item].dayAmount))),
       super: formatAmount(parseFloat(formatEther(data[item].weekAmount))),
       color: colors[item],
+      drawCounter: data[item].drawCounter,
     };
   });
   const details = {
@@ -250,10 +268,10 @@ const getDrawDetails = async () => {
 };
 
 // Returns an array of the last 12 draw winners
-const getRecentWindfalls = async () => {
-  const cantoData = await getFrontendData("Canto");
-  // const ethereumData = await getFrontendData("Ethereum");
-  // const maticData = await getFrontendData("Matic");
+const getRecentWindfalls = (frontendData) => {
+  const cantoData = frontendData["Canto"];
+  // const ethereumData = frontendData["Ethereum"];
+  // const maticData = frontendData["Matic"];
 
   //add Ethereum: ethereumData, Matic: maticData to the array below to include Ethereuem and Matic
   const data = { Canto: cantoData };
@@ -261,10 +279,7 @@ const getRecentWindfalls = async () => {
   //add Ethereum and Matic to the array below to include the Ethereuem and Matic netowrks
   const networkList = ["Canto"];
 
-  const contract = await getContractJson("Canto");
   const recentWindfalls = [];
-
-  const drawCounter = await contract.drawCounter();
 
   // change the 7 below to 4 when the other networks have been added
   for (let i = 0; i < 7; i++) {
@@ -289,7 +304,10 @@ const getRecentWindfalls = async () => {
     });
 
     var titleType = "DAILY";
-    if (parseInt(drawCounter) > 0 && (parseInt(drawCounter) - 1 - i) % 7 == 0) {
+    if (
+      parseInt(data.Canto.drawCounter) > 0 &&
+      (parseInt(data.Canto.drawCounter) - 1 - i) % 7 == 0
+    ) {
       titleType = "SUPER";
     }
 
@@ -307,6 +325,26 @@ const getRecentWindfalls = async () => {
     }
   }
   return recentWindfalls;
+};
+
+const getContractState = async () => {
+  const cantoData = await getFrontendData("Canto");
+  // const ethereumData = await getFrontendData("Ethereum");
+  // const maticData = await getFrontendData("Matic");
+
+  const frontendData = {
+    Canto: cantoData,
+    // Ethereum: ethereumData,
+    // Matic: maticData
+  };
+
+  const drawDetails = getDrawDetails(frontendData);
+  const recentWindfalls = getRecentWindfalls(frontendData);
+
+  return {
+    drawDetails,
+    recentWindfalls,
+  };
 };
 
 /**
@@ -493,4 +531,6 @@ export {
   claimRewards,
   switchNetwork,
   getTokenMetadata,
+  getContractState,
+  setNewSigner,
 };

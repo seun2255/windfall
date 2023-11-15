@@ -1,14 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./index.module.css";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import DepositBox from "./depositBox";
-import { useEffect } from "react";
 
 export default function Deposits() {
-  const dispatch = useDispatch();
   const { chain, color } = useSelector((state) => state.app);
   const { user } = useSelector((state) => state.user);
 

@@ -2,15 +2,12 @@
 
 import styles from "./agreementModal.module.css";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { animated, useSpring } from "@react-spring/web";
-import { setContractFailModal } from "../_redux/modals";
 
 // Component for both the deposit agreement and Unstake agreement Modals
 export default function AgreementModal(props) {
   // the type variable determines which agreement the modal shows, it is either stake or unstake
   const { type, handleDeposit, handleUnstake, setModal } = props;
-  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
 

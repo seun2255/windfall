@@ -5,14 +5,13 @@ import styles from "./depositBox.module.css";
 import icons from "../../_assets/icons/icons";
 import {
   stakeValid,
-  calculateUnstakePeriod,
   calculateTimeDifferenceFromTimestamp,
 } from "@/app/_utils/time";
 import { useEffect, useState } from "react";
 import { setDrawDetails } from "@/app/_redux/app";
 import { useSelector, useDispatch } from "react-redux";
 import calculatePercentage from "@/app/_utils/calculatePercentage";
-import { getDrawDetails } from "@/app/_utils/contract";
+import { getContractState } from "@/app/_utils/contract";
 import {
   ClaimRewardButton,
   NoRewardButton,
@@ -54,7 +53,8 @@ export default function DepositBox(props) {
     );
     if (timeTillActive !== 0) {
       setTimeout(async () => {
-        const details = await getDrawDetails();
+        const data = await getContractState();
+        const details = data.drawDetails;
         dispatch(setDrawDetails(details));
         setActive(true);
       }, timeTillActive + 5000);

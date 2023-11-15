@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./page.module.css";
 import Header from "./_components/Header";
 import DrawDetails from "./_components/DrawDetails";
@@ -10,7 +9,7 @@ import ConnectWalletModal from "./_modals/walletConnectModal";
 import DepositModal from "./_modals/depositModal";
 import Footer from "./_components/Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { getDrawDetails, getRecentWindfalls } from "./_utils/contract";
+import { getContractState } from "./_utils/contract";
 import { setDrawDetails, setRecentWindfalls } from "./_redux/app";
 import { useEffect, useState } from "react";
 import NetworkModal from "./_modals/wrongNetwork";
@@ -37,8 +36,9 @@ export default function Main() {
   // Retrieves all the frontend data from the blockcahin before rendering the app
   useEffect(() => {
     const getData = async () => {
-      const details = await getDrawDetails();
-      const recentWindfalls = await getRecentWindfalls();
+      const data = await getContractState();
+      const details = data.drawDetails;
+      const recentWindfalls = data.recentWindfalls;
       // Dispatching the setDrawDetails action in the redux app slice
       dispatch(setDrawDetails(details));
       // Dispatching the setRecentWindfalls action in the redux app slice
@@ -47,7 +47,7 @@ export default function Main() {
     };
 
     getData();
-  });
+  }, []);
 
   // The app is rendered only after the frontend data has been fetched from the backend
   if (hydrate) {
