@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import styles from "./firstStakeModal.module.css";
 import { useState, useEffect } from "react";
 import { animated, useSpring } from "@react-spring/web";
@@ -59,8 +60,15 @@ export default function FirstStakeModal() {
               style={{ backgroundColor: "#4DFF5F", borderColor: "#007D14" }}
             ></div>
             <span className={styles.text}>
-              <span className={styles.colored}>Add</span> the Windfall NFT
-              contract to your wallet.{" "}
+              <Link
+                href={
+                  "https://app.gitbook.com/o/kJtfy5OqPfuA6aeBb99F/s/p4yUSk23AubmL5kX5Stz/"
+                }
+                target="_blank"
+              >
+                <span className={styles.colored}>Add</span>
+              </Link>{" "}
+              the Windfall NFT contract to your wallet.{" "}
             </span>
           </div>
           <div className={styles.terms}>

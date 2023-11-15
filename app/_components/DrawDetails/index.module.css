@@ -110,7 +110,7 @@
   width: 24%;
   text-align: center;
   position: relative;
-  left: 7px;
+  left: 10px;
 }
 
 .table__head > tr th:nth-child(3) {
@@ -119,11 +119,11 @@
 
 .table__head > tr th:nth-child(2) {
   width: 28%;
-  left: 10px;
+  left: 15px;
 }
 
 .table__head > tr th:nth-child(4) {
-  left: -4px;
+  left: -6px;
 }
 
 .table__body {
@@ -132,12 +132,12 @@
 }
 
 .table__body > tr td {
-  padding-bottom: 30px;
+  padding-bottom: 5px;
   font-weight: 400;
   width: 24%;
   text-align: center;
   position: relative;
-  left: 7px;
+  left: 10px;
 }
 
 .table__body > tr td:nth-child(3) {
@@ -146,11 +146,11 @@
 
 .table__body > tr td:nth-child(2) {
   width: 28%;
-  left: 10px;
+  left: 15px;
 }
 
 .table__body > tr td:nth-child(4) {
-  left: -4px;
+  left: -6px;
 }
 
 .row__0 td {
@@ -542,7 +542,7 @@
     border-collapse: collapse;
     font-family: "Satoshi";
     font-weight: 300 !important;
-    margin-bottom: 23px;
+    margin-bottom: 13px;
   }
 
   .table__head {
@@ -589,6 +589,7 @@
   .table__body > tr td {
     padding: 15px 0px;
     padding-left: 10px;
+    padding-bottom: 5px;
     width: 24%;
     left: 0px;
   }
