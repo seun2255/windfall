@@ -89,7 +89,7 @@
 }
 
 .display {
-  width: 97%;
+  width: 99%;
   border-collapse: collapse;
   margin-bottom: 30px;
   font-size: 26px;
@@ -107,23 +107,27 @@
 .table__head > tr th {
   padding-bottom: 30px;
   font-weight: 400;
-  width: 24%;
-  text-align: center;
+  width: 17%;
+  text-align: left;
   position: relative;
-  left: 10px;
 }
 
-.table__head > tr th:nth-child(3) {
-  width: 24%;
+.table__head > tr th:nth-child(1) {
+  width: 32%;
 }
 
 .table__head > tr th:nth-child(2) {
-  width: 28%;
-  left: 15px;
+  width: 32%;
+}
+
+.table__head > tr th:nth-child(3) {
+  width: 18%;
+  padding-left: 4px;
 }
 
 .table__head > tr th:nth-child(4) {
-  left: -6px;
+  /* left: -6px; */
+  width: 18%;
 }
 
 .table__body {
@@ -134,23 +138,27 @@
 .table__body > tr td {
   padding-bottom: 5px;
   font-weight: 400;
-  width: 24%;
-  text-align: center;
+  width: 17%;
+  text-align: left;
   position: relative;
-  left: 10px;
 }
 
-.table__body > tr td:nth-child(3) {
-  width: 24%;
+.table__body > tr td:nth-child(1) {
+  width: 32%;
 }
 
 .table__body > tr td:nth-child(2) {
-  width: 28%;
-  left: 15px;
+  width: 32%;
+}
+
+.table__body > tr td:nth-child(3) {
+  width: 18%;
+  padding-left: 4px;
 }
 
 .table__body > tr td:nth-child(4) {
-  left: -6px;
+  /* left: -6px; */
+  width: 18%;
 }
 
 .row__0 td {
@@ -171,11 +179,13 @@
   width: -moz-fit-content !important;
   width: fit-content !important;
   position: relative;
-  left: 40px;
+  text-align: right !important;
+  padding-right: 15px;
+  /* left: 40px; */
 }
 
 .button {
-  width: 97%;
+  width: 99%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,7 +210,7 @@
   position: absolute;
   width: 75px;
   height: 75px;
-  top: 30%;
+  top: 190px;
   left: -169.2px;
 }
 
@@ -208,7 +218,7 @@
   position: absolute;
   width: 24px;
   height: 24px;
-  top: 56%;
+  top: 340px;
   left: -200px;
 }
 
@@ -216,7 +226,7 @@
   position: absolute;
   width: 50px;
   height: 50px;
-  top: 85%;
+  top: 450px;
   left: -151px;
 }
 
@@ -224,7 +234,7 @@
   position: absolute;
   width: 22px;
   height: 22px;
-  top: 30%;
+  top: 213px;
   right: -87px;
 }
 
@@ -232,7 +242,7 @@
   position: absolute;
   width: 94px;
   height: 94px;
-  top: 55%;
+  top: 313px;
   right: -222px;
 }
 
@@ -240,8 +250,8 @@
   position: absolute;
   width: 36px;
   height: 36px;
-  top: 88%;
-  right: -146px;
+  top: 480px;
+  right: -126px;
 }
 
 /* Responsive text size */

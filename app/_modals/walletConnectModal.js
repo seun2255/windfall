@@ -95,11 +95,7 @@ export default function ConnectWalletModal(props) {
 
         // This event is triggered when the active account is changed
         window.ethereum.on("accountsChanged", async (accounts) => {
-          const data = await connect();
-          dispatch(
-            setAppData({ color: colors[data.chain], chain: data.chain })
-          );
-          dispatch(login({ address: data.address, deposits: data.tokens }));
+          window.location.reload();
         });
       } catch {
         dispatch(setWalletModal(false));

@@ -79,8 +79,15 @@ export default function FirstStakeModal() {
               style={{ backgroundColor: "#4DFF5F", borderColor: "#007D14" }}
             ></div>
             <span className={styles.text}>
-              <span className={styles.colored}>Borrow</span> against your NFT as
-              collateral.
+              <Link
+                href={
+                  "https://app.gitbook.com/o/kJtfy5OqPfuA6aeBb99F/s/p4yUSk23AubmL5kX5Stz/"
+                }
+                target="_blank"
+              >
+                <span className={styles.colored}>Borrow</span>
+              </Link>{" "}
+              against your NFT as collateral.
             </span>
           </div>
           <div className={styles.terms}>
@@ -90,7 +97,14 @@ export default function FirstStakeModal() {
             ></div>
             <span className={styles.text}>
               Add tokens on one of our other{" "}
-              <span className={styles.colored}>supported chains.</span>
+              <Link
+                href={
+                  "https://app.gitbook.com/o/kJtfy5OqPfuA6aeBb99F/s/p4yUSk23AubmL5kX5Stz/"
+                }
+                target="_blank"
+              >
+                <span className={styles.colored}>supported chains.</span>
+              </Link>
             </span>
           </div>
         </div>
@@ -98,7 +112,6 @@ export default function FirstStakeModal() {
           <button
             className={styles.change__button}
             onClick={(e) => handleClick(e)}
-            style={{ color: "#ffffff" }}
           >
             <span>DISMISS</span>
           </button>

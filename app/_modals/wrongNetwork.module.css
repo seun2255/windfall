@@ -68,6 +68,12 @@
   margin-bottom: 25px;
 }
 
+.gradient__border:active {
+  padding: 0px;
+  background: none;
+  border: 1px solid #01e186;
+}
+
 .change__button {
   border-radius: 13.31px;
   border: 1.331px solid #c03a59;

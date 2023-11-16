@@ -80,7 +80,6 @@ export default function AgreementModal(props) {
           <button
             className={styles.change__button}
             onClick={(e) => handleClick(e)}
-            style={{ color: "#ffffff" }}
           >
             <span>CONTINUE</span>
           </button>

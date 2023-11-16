@@ -68,7 +68,7 @@
 
 .table__head > tr th:nth-child(1) {
   text-align: left !important;
-  padding-left: 25px;
+  padding-left: 12.5px;
 }
 
 .table__head > tr th:nth-child(2) {
@@ -78,7 +78,7 @@
 
 .table__head > tr th:nth-child(3) {
   text-align: right !important;
-  padding-right: 25px;
+  padding-right: 12.5px;
 }
 
 .table__body {
