@@ -73,24 +73,7 @@ export default function ConnectWalletModal(props) {
         // An event is triggerred when the network is changed and the state of the app and the users
         // details get updated.
         window.ethereum.on("networkChanged", async () => {
-          const data = await connect();
-          const colors = {
-            Canto: "#01e186",
-            Ethereum: "#3e8fff",
-            Matic: "#a46dff",
-          };
-          dispatch(
-            setAppData({ color: colors[data.chain], chain: data.chain })
-          );
-          if (data.chain === "Other") {
-            dispatch(login({ address: "", deposits: [] }));
-            dispatch(setDepositModal(false));
-            dispatch(setWalletModal(false));
-            dispatch(setNetworkModal(true));
-          } else {
-            dispatch(login({ address: data.address, deposits: data.tokens }));
-            dispatch(setWalletModal(false));
-          }
+          window.location.reload();
         });
 
         // This event is triggered when the active account is changed
