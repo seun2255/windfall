@@ -9,7 +9,6 @@ import axios from "axios";
 // Cached variables
 let provider;
 let contractJson;
-let signer;
 
 // creates an instance of the provider
 const getProvider = async () => {
@@ -21,16 +20,10 @@ const getProvider = async () => {
 
 // creates an instance of the signer
 const getSigner = async () => {
-  if (!signer) {
-    const provider = await getProvider();
-    signer = await provider.getSigner();
-  }
-  return signer;
-};
-
-const setNewSigner = async () => {
   const provider = await getProvider();
-  signer = await provider.getSigner();
+  const signer = await provider.getSigner();
+
+  return signer;
 };
 
 // gets the address of the connected user
@@ -529,5 +522,4 @@ export {
   switchNetwork,
   getTokenMetadata,
   getContractState,
-  setNewSigner,
 };

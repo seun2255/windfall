@@ -12,7 +12,7 @@ import {
   setNetworkModal,
   setErrorModal,
 } from "../_redux/modals";
-import { connect, setNewSigner } from "../_utils/contract";
+import { connect } from "../_utils/contract";
 import { login } from "../_redux/user";
 import { setAppData } from "../_redux/app";
 
@@ -97,7 +97,6 @@ export default function ConnectWalletModal(props) {
 
         // This event is triggered when the active account is changed
         window.ethereum.on("accountsChanged", async (accounts) => {
-          await setNewSigner();
           const data = await connect();
           dispatch(
             setAppData({ color: colors[data.chain], chain: data.chain })
