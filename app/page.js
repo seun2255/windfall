@@ -37,7 +37,6 @@ export default function Main() {
   useEffect(() => {
     const getData = async () => {
       const data = await getContractState();
-      console.log("Interval");
       const details = data.drawDetails;
       const recentWindfalls = data.recentWindfalls;
       // Dispatching the setDrawDetails action in the redux app slice

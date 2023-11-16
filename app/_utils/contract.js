@@ -346,9 +346,7 @@ const getContractState = async () => {
 const connect = async () => {
   var data = {};
   const address = await getAddress();
-  console.log(address);
   const network = await determineNetwork();
-  console.log(network);
   if (network !== "Other") {
     const contract = await getContract();
     const tokenContract = await getTokenContract();

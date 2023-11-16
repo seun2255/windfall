@@ -52,14 +52,12 @@ export default function ConnectWalletModal(props) {
     // If a second checkbox is added change this to if(checked1 && checked2)
     if (checked1) {
       try {
-        console.log("Hello");
         const data = await connect();
         const colors = {
           Canto: "#01e186",
           Ethereum: "#3e8fff",
           Matic: "#a46dff",
         };
-        console.log(data);
         // The state of the app is stored in the redux store
         dispatch(setAppData({ color: colors[data.chain], chain: data.chain }));
         // If the user is connected to the wrong networl the Wrong Network modal pops up
