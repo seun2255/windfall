@@ -18,7 +18,7 @@
 
 .box {
   position: relative;
-  width: 837px;
+  width: 807px;
   box-sizing: border-box;
   padding: 52px 51px 53px 66px;
   border-radius: 10px;
@@ -59,10 +59,10 @@
 .timer {
   box-sizing: border-box;
   display: flex;
-  max-width: 320px;
+  max-width: 310px;
   justify-content: center;
   align-items: center;
-  padding: 0.5em 3.5em;
+  padding: 0.3em 3.5em;
   border-radius: 15px;
   background-color: #ffffff1a;
   color: white;
@@ -91,7 +91,7 @@
 .display {
   width: 99%;
   border-collapse: collapse;
-  margin-bottom: 30px;
+  margin-bottom: 47px;
   font-size: 26px;
   font-family: "Satoshi";
   letter-spacing: -0.13px;
@@ -185,13 +185,13 @@
 }
 
 .button {
-  width: 99%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
   font-size: 22px;
-  padding: 10px 0px;
+  padding: 13px 0px;
   color: white;
   background: linear-gradient(to bottom, #3a89a3, #0a303d);
   border-radius: 13px;
@@ -552,7 +552,7 @@
     border-collapse: collapse;
     font-family: "Satoshi";
     font-weight: 300 !important;
-    margin-bottom: 13px;
+    margin-bottom: 23px;
   }
 
   .table__head {
@@ -633,8 +633,9 @@
 
   .last__column {
     border-left: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
+    text-align: center !important;
     left: 0px;
+    padding-right: 0px;
   }
 
   .button {
