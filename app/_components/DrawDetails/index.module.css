@@ -47,7 +47,7 @@
   font-weight: 500;
   font-family: "Satoshi";
   color: #ffffff;
-  letter-spacing: 1px;
+  letter-spacing: -0.16px;
 }
 
 .timer__icon {
@@ -89,7 +89,7 @@
 }
 
 .display {
-  width: 99%;
+  width: 98%;
   border-collapse: collapse;
   margin-bottom: 47px;
   font-size: 26px;
@@ -107,27 +107,28 @@
 .table__head > tr th {
   padding-bottom: 30px;
   font-weight: 400;
-  width: 17%;
+  width: 18%;
   text-align: left;
   position: relative;
 }
 
 .table__head > tr th:nth-child(1) {
-  width: 32%;
+  width: 30%;
+  padding-left: 9px;
 }
 
 .table__head > tr th:nth-child(2) {
-  width: 32%;
+  width: 34%;
 }
 
 .table__head > tr th:nth-child(3) {
-  width: 18%;
+  /* width: 18%; */
   padding-left: 4px;
 }
 
 .table__head > tr th:nth-child(4) {
   /* left: -6px; */
-  width: 18%;
+  /* width: 18%; */
 }
 
 .table__body {
@@ -138,27 +139,32 @@
 .table__body > tr td {
   padding-bottom: 5px;
   font-weight: 400;
-  width: 17%;
+  width: 18%;
   text-align: left;
   position: relative;
 }
 
 .table__body > tr td:nth-child(1) {
-  width: 32%;
+  width: 3%;
+  padding-left: 9px;
 }
 
 .table__body > tr td:nth-child(2) {
-  width: 32%;
+  width: 34%;
 }
 
 .table__body > tr td:nth-child(3) {
-  width: 18%;
+  /* width: 18%; */
   padding-left: 4px;
 }
 
 .table__body > tr td:nth-child(4) {
   /* left: -6px; */
-  width: 18%;
+  /* width: 18%; */
+}
+
+.table__body tr:last-child td {
+  padding-bottom: 40px;
 }
 
 .row__0 td {
