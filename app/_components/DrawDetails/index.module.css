@@ -20,7 +20,7 @@
   position: relative;
   width: 807px;
   box-sizing: border-box;
-  padding: 52px 51px 53px 66px;
+  padding: 52px 51px 53px 51px;
   border-radius: 10px;
   border: 1px solid hsla(0, 0%, 100%, 0.3);
   box-shadow: -100px 88px 159px 0 rgba(17, 138, 178, 0.25);
@@ -89,7 +89,7 @@
 }
 
 .display {
-  width: 98%;
+  width: 100%;
   border-collapse: collapse;
   margin-bottom: 47px;
   font-size: 26px;
